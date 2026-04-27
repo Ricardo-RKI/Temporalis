@@ -179,3 +179,73 @@ main {
 .texto_card {
     text-align: center;
 }
+
+
+.card_cadastro {
+    background-color: #1E1B2E;
+    border: solid #3D375E 2px;
+    border-radius: 8px;
+    width: 500px;
+    margin: 80px auto;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card_cadastro h1 {
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.card_cadastro p {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.card_cadastro input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: solid 1px #3D375E;
+    background-color: #0F0C1D;
+    color: #EAECFB;
+    outline: none;
+    transition: 0.2s;
+}
+
+.card_cadastro input:focus {
+    border: solid 1px #6D28D9;
+    box-shadow: 0 0 5px #6D28D9;
+}
+
+.card_cadastro div {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.card_cadastro button {
+    margin-top: 10px;
+    padding: 12px;
+    background-color: #6D28D9;
+    color: #EAECFB;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.card_cadastro button:hover {
+    background-color: #5B21B6;
+    transform: scale(1.02);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1E1B2E;
+    border-top: solid #3D375E 2px;
+    margin-top: 40px;
+}
