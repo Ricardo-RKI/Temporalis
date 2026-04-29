@@ -12,23 +12,25 @@
         <span class ="titulo"> Temporalis </span>
 
         <ul class = "links"> 
-        <li> <a> Home </a> </li>
-        <li> <a> Login </a> </li>
+        <li> <a href ="index.html"> Home </a> </li>
+    
         </ul>
     </div>
     </header>
 
     <div class = "card_cadastro"> 
-       <h1> Torne-se Um Adepto do Tempo. Cadastre-se e tenha acesso já ao Temporalis. </h1>
+       <h1> Bem-vindo de Volta!. Faça o seu Login e Tenha acesso ao seu Temporalis!. </h1>
 
        <p> Nome do Usuário: </p>
        <input type="text" id="ipt_usuario">
 
        <p> Digite sua Senha: </p>
-       <input type="text" id="ipt_senha">
+       <input type="password" id="ipt_senha">
+
+       <p> Esqueceu a Senha? <a href = "#"> Recupere Aqui </a></p>
 
 
-        <button onclick = "login()"> Cadastrar </button>
+        <button onclick = "login()"> Realizar Login </button>
 
     </div>
     <footer> 
@@ -36,9 +38,36 @@
     </footer>
 </body>
 
-<script> 
-    function loginr() {
+<script>
+let senha_forte = false;
+
+    function login() {
+        let nome = ipt_usuario.value;
+        let senha = ipt_senha.value;
+        let tamanho = senha.length >= 8;
+        let tem_numero = /([0-9])/.test(senha);
+        let tem_maiuscula = /([A-Z])/.test(senha);
+        let tem_especial = /([^A-Za-z0-9])/.test(senha);
+
+        if (tamanho && tem_numero && tem_maiuscula && tem_especial) {
+            senha_forte = true;
+        }
+        
+        if (nome == "") {
+            alert("Insira o Nome do Usuário!")
+            return;
+        }
+
+        if (!senha_forte) {
+            alert("A senha é fraca! Coloque a senha Corretamente");
+        }
+
+        if ( nome != "" && senha_forte) {
+            alert("Login Realizado com Sucesso!")
+            window.location.href = "dashboard.html"
+        }
 
     }
 </script>
 </html>
+

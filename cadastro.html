@@ -12,8 +12,8 @@
         <span class ="titulo"> Temporalis </span>
 
         <ul class = "links"> 
-        <li> <a> Home </a> </li>
-        <li> <a> Login </a> </li>
+        <li> <a href = "index.html"> Home </a> </li>
+        
         </ul>
     </div>
     </header>
@@ -26,18 +26,18 @@
        <p> E-mail: </p>
        <input type="text" id="ipt_email">
        <p> Crie uma Senha: </p>
-       <input type="text" id="ipt_senha">
-       <div> 
-        <span style = "color:red"> Mínimo de 8 Caracteres</span>
+       <input type="password" id="ipt_senha" oninput="senha_valida()">
+       <div id = div_senha> 
+        <span style = "color: red"> A Senha ter deve no Mínimo de 8 Caracteres</span>
         <br>
-        <span style = "color: red"> A Senha deve incluir pelo menos uma letra maiuscula </span>
+        <span style = "color: red"> A Senha deve incluir pelo menos uma letra maiúscula </span>
         <br>
         <span style = "color: red"> A Senha deve incluir números</span>
         <br>
         <span style = "color: red"> A Senha deve Incluir pelo menos um Caracter Especial </span>
        </div>
        <p> Digite novamente a Senha: </p>
-       <input type="text" id="ipt_senha_dois">
+       <input type="password" id="ipt_senha_igual">
 
         <button onclick = "cadastrar()"> Cadastrar </button>
 
@@ -48,7 +48,64 @@
 </body>
 
 <script> 
+let senha_forte = false;
+let email_valido = false;
+    function senha_valida() {
+        let senha = ipt_senha.value;
+        let tamanho = senha.length >= 8;
+        let tem_numero = /([0-9])/.test(senha);
+        let tem_maiuscula = /([A-Z])/.test(senha);
+        let tem_especial = /([^A-Za-z0-9])/.test(senha);
+        let texto_validacao = "";
+
+        
+        texto_validacao += `<span style="color:${tamanho ? 'green' : 'red'}"> A Senha ter deve no Mínimo de 8 Caracteres</span> <br>`;
+        texto_validacao += `<span style="color:${tem_maiuscula ? 'green' : 'red'}"> A Senha ter deve incluir pelo menos uma letra maiuscula</span> <br>`;
+        texto_validacao += `<span style="color:${tem_numero ? 'green' : 'red'}"> A Senha ter deve incluir pelo menos um numero</span> <br>`;
+        texto_validacao += `<span style="color:${tem_especial ? 'green' : 'red'}"> A Senha ter deve incluir pelo menos um caractere especial</span> <br>`;
+       
+        if (tamanho && tem_numero && tem_maiuscula && tem_especial) {
+            senha_forte = true;
+        }
+
+        div_senha.innerHTML = texto_validacao;
+        
+    }
+
     function cadastrar() {
+        let nome = ipt_usuario.value;
+        let email = ipt_email.value;
+        let senha = ipt_senha.value;
+        let confirmar_senha = ipt_senha_igual.value;
+        
+
+        if (email.includes("@") && email.includes(".")) {
+
+            email_valido = true
+
+        } else {
+            alert("Email Inválido");
+            return;
+            
+        }
+
+        if (!senha_forte) {
+            alert("A senha não atende a todos os requisitos!")
+            return;
+        }
+
+         if (senha != confirmar_senha) {
+            alert("As duas senhas estão diferentes!")
+            return;
+        }
+        if (nome == "") {
+            alert("Insira um Nome do Usuário!")
+            return;
+        }
+        if ( nome != "" && senha_forte && senha === confirmar_senha) {
+            alert("Cadastro Realizado com Sucesso!")
+            window.location.href = "login.html"
+        }
 
     }
 </script>
