@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel ="stylesheet" href = "style.css"> 
+</head>
+<body>
+    <div class = "sidebar"> 
+    <h2> Temporalis <br> Olá Usuário, <br> Seja Bem-vindo de Volta!</h2>
+        <br>
+        <ul>
+            <div class = "lista_dash">
+            <li> <a> Estatísticas Gerais </a> </li>
+            <br>
+
+            <li> <a> Suas Fichas </a> </li>
+            <br>
+            
+            <li> <a> Suas Campanhas </a> </li>
+            <br>
+            
+            <li> <a> Rolagens de Dados </a> </li>
+            <br>
+
+            <li class = "sair"> <a> Sair </a> </li>
+            </div>
+
+        </ul>
+    </div>
+<div class="conteudo_dashboard">
+
+    <h1 class="titulo_dashboard"> Estatísticas Gerais </h1>
+
+    
+    <div class="kpis">
+
+        <div class="card_kpi">
+            <h3>Campanhas Ativas</h3>
+            <span>5</span>
+        </div>
+
+        <div class="card_kpi">
+            <h3>Personagens</h3>
+            <span>18</span>
+        </div>
+
+        <div class="card_kpi">
+            <h3>Sessões Totais</h3>
+            <span>32</span>
+        </div>
+
+    </div>
+
+ 
+    <h2 class="subtitulo"> Suas Metas de Progresso </h2>
+
+    <div class="metas">
+
+        <div class="card_meta">
+            <div class="meta_topo">
+                <h3> Sessões na Semana </h3>
+                <span>3 / 5</span>
+            </div>
+
+            <div class="barra_progresso">
+                <div class="progresso" style="width: 60%;"></div>
+            </div>
+        </div>
+
+        <div class="card_meta">
+            <div class="meta_topo">
+                <h3> Criar Personagens </h3>
+                <span>2 / 4</span>
+            </div>
+
+            <div class="barra_progresso">
+                <div class="progresso" style="width: 50%;"></div>
+            </div>
+        </div>
+
+        <div class="card_meta">
+            <div class="meta_topo">
+                <h3> Atualizar Campanha </h3>
+                <span>1 / 3</span>
+            </div>
+
+            <div class="barra_progresso">
+                <div class="progresso" style="width: 33%;"></div>
+            </div>
+        </div>
+
+    </div>
+
+ 
+    <div class="resumo">
+        <h3>Resumo Geral</h3>
+        <p>Você está progredindo bem nas suas metas semanais.</p>
+        <p>Continue jogando para completar seus objetivos!</p>
+    </div>
+
+</div>
+
+<div class="rastreamento">
+
+    <h2 class="subtitulo"> Acompanhar Progresso </h2>
+
+    <div class="filtros">
+   <div class = "select">  
+        <div>
+            <label>Campanha:</label>
+            <select id="select_campanha" onchange="atualizarGrafico()">
+                <option value="campanha1">Crônicas do Tempo</option>
+                <option value="campanha2">Ecos do Futuro</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Personagem:</label>
+            <select id="select_personagem" onchange="atualizarGrafico()">
+                <option value="personagem1">Akira</option>
+                <option value="personagem2">Luna</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="grafico_container">
+        <canvas id="graficoHoras"></canvas>
+    </div>
+    </div>
+
+</div>
+
+</div>
+</body>
+</html>
+
+<script>
+let grafico;
+
+
+const dados = {
+    campanha1: {
+        personagem1: {
+            horas: [2, 3, 4, 3, 5],
+            meta: 20
+        },
+        personagem2: {
+            horas: [1, 2, 2, 3, 2],
+            meta: 15
+        }
+    },
+    campanha2: {
+        personagem1: {
+            horas: [3, 4, 2, 5, 6],
+            meta: 25
+        },
+        personagem2: {
+            horas: [2, 1, 3, 2, 4],
+            meta: 18
+        }
+    }
+};
+
+
+function criarGrafico(labels, horas, meta) {
+    const ctx = document.getElementById('graficoHoras').getContext('2d');
+
+    if (grafico) {
+        grafico.destroy();
+    }
+
+    grafico = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Horas Jogadas',
+                    data: horas,
+                    borderWidth: 1
+                },
+                {
+                    label: 'Meta (linha)',
+                    data: Array(horas.length).fill(meta / horas.length),
+                    type: 'line',
+                    tension: 0.3
+                }
+            ]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#EAECFB'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#EAECFB' }
+                },
+                y: {
+                    ticks: { color: '#EAECFB' }
+                }
+            }
+        }
+    });
+}
+
+
+function atualizarGrafico() {
+    const campanha = document.getElementById("select_campanha").value;
+    const personagem = document.getElementById("select_personagem").value;
+
+    const info = dados[campanha][personagem];
+
+    criarGrafico(
+        ["Seg", "Ter", "Qua", "Qui", "Sex"],
+        info.horas,
+        info.meta
+    );
+}
+
+
+window.onload = atualizarGrafico;
+</script>
