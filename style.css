@@ -31,15 +31,12 @@ ul {
     justify-content: space-between;
     align-items: center;
 }
-
-.titulo {
-    font-size: 20px;
-    font-weight: 600;
-    color: #EAECFB;
-    
-   
+.nav .titulo img {
+    width: 20%;
 }
-
+.nav .titulo_cadastro img {
+    width: 10%;
+}
 .links {
     display: flex;
     flex-direction: row;
