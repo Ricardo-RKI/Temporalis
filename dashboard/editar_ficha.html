@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/flavicontemporalis.png">
+    <link rel="stylesheet" href="./../css/dashboard.css">
+    <link rel="stylesheet" href="./../css/editar_fichas.css">
+</head>
+
+<body onload="listarFichas()">
+
+    <div class="layout">
+        <div class="sidebar">
+            <h2>Temporalis</h2>
+            <div class="links_dash">
+                <a href="dashboard.html">Estatísticas Gerais</a>
+                <a href="fichas.html">Suas Fichas</a>
+                <a href="campanhas.html">Suas Campanhas</a>
+                <a href="dados.html">Rolagens de Dados</a>
+                <a class="Sair" href="#">Sair</a>
+            </div>
+        </div>
+
+        <main class="conteudo_ficha">
+            <div class="topo" style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1>Editar Ficha</h1>
+                    <span>Crie e modifique o seu Adepto do Tempo.</span>
+                </div>
+                <div class="botoes_acao_ficha">
+                    <button onclick="salvarAlteracoes()" class="btn_salvar">Salvar Alterações</button>
+                    <button onclick="deletarFicha()" class="btn_deletar">Excluir Ficha</button>
+                </div>
+            </div>
+
+            <div class="editar_tudo">
+                <div class="atri_info">
+                    <div class="titulo_ficha">
+                        <h2>Informações Gerais</h2>
+
+                        <div class="info_jogador">
+                            <div class="input_grupo">
+                                <label for="nome_input">Personagem:</label>
+                                <input type="text" id="nome_input">
+                            </div>
+                            <div class="input_grupo">
+                                <label for="jogador_input">Nome do Jogador:</label>
+                                <input type="text" id="jogador_input">
+                            </div>
+                        </div>
+
+                        <div class="info_classe">
+                            <div class="input_grupo">
+                                <label for="classe_input">Classe e Subclasse:</label>
+                                <input type="text" id="classe_input">
+                            </div>
+                            <div class="input_grupo">
+                                <label for="IE_input">Individualidade Especializada:</label>
+                                <input type="text" id="IE_input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="atributos_basicos">
+                    <h2>Atributos</h2>
+                    <div class="grid_atributos">
+                        <div class="card_atributo">
+                            <h4>Vitalidade</h4>
+                            <input type="text" id="valor_vi">
+                        </div>
+                        <div class="card_atributo">
+                            <h4>Fortitude</h4>
+                            <input type="text" id="valor_fo">
+                        </div>
+                        <div class="card_atributo">
+                            <h4>Força</h4>
+                            <input type="text" id="valor_forc">
+                        </div>
+                        <div class="card_atributo">
+                            <h4>Destreza</h4>
+                            <input type="text" id="valor_des">
+                        </div>
+                        <div class="card_atributo">
+                            <h4>Conhecimento</h4>
+                            <input type="text" id="valor_con">
+                        </div>
+                        <div class="card_atributo">
+                            <h4>Fascínio</h4>
+                            <input type="text" id="valor_fas">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="area_inferior">
+
+
+                    <div class="status_pericias">
+                        <div class="status_gerais">
+                            <h2> Status do Personagem </h2>
+                            <div class="card_nivel">
+                                <h4>Nível Dimensional</h4>
+                                <input type="text" id="valor_nivel" class="input_nivel">
+                            </div>
+
+                            <div class="barras_status">
+                                <div class="barra_vida">
+                                    <h3> Vida </h3>
+                                    <div class="Vida">
+                                        <input type="number" id="vida_atual" value="46" class="input_barra"> /
+                                        <span>46</span>
+                                    </div>
+                                </div>
+
+                                <div class="barra_energia">
+                                    <h3> Energia Temporal </h3>
+                                    <div class="Energia_temporal">
+                                        <input type="number" id="energia_atual" value="50" class="input_barra"> /
+                                        <span>50</span>
+                                    </div>
+                                </div>
+
+                                <div class="barra_ten">
+                                    <h3> Tenacidade </h3>
+                                    <div class="Tenacidade">
+                                        <img src="/assets/img/shield.png" alt="Escudo">
+                                        <input type="number" id="valor_tenacidade" value="15" class="input_tenacidade">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pericias">
+
+                            <h2>Perícias</h2>
+
+                            <div class="cabecalho_pericias">
+                                <span>Perícia</span>
+                                <span>Bônus</span>
+                                <span>Treinada</span>
+                            </div>
+
+                            <div class="lista_pericias">
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+
+                                        <span>Acrobacia</span>
+                                    </div>
+
+                                    <input type="number" value="0">
+
+                                    <input type="checkbox">
+
+                                </div>
+
+                                <div class="linha_pericia">
+
+                                    <div class="nome_pericia">
+
+                                        <span>Atletismo</span>
+                                    </div>
+
+                                    <input type="number" value="0">
+
+                                    <input type="checkbox">
+
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Luta</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Pontaria</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Reflexos</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Furtividade</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Ciências Temporais</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Ciências</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Diplomacia</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Artístico</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Percepção</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Intimidação</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Investigação</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Profissional</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Tecnologia</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Vontade</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Religião</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Tática</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                                <div class="linha_pericia">
+                                    <div class="nome_pericia">
+                                        <span>Medicina</span>
+                                    </div>
+                                    <input type="number" value="0">
+                                    <input type="checkbox">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="area_lateral">
+
+
+                        <div class="abas">
+
+                            <button onclick="mostrarDescricao()">
+                                Descriçao
+                            </button>
+
+                            <button onclick="mostrarInventario()">
+                                Inventário
+                            </button>
+
+                            <button onclick="mostrarHabilidades()">
+                                Habilidades
+                            </button>
+
+                            <button onclick="mostrarTecnicas()">
+                                Técnicas Temporais
+                            </button>
+
+                        </div>
+
+
+                        <div class="conteudo_abas">
+
+                            <div id="Descricao">
+
+                                <h2>Descrição</h2>
+                                <p>Sonhos, Anseios e Medos do seu personagem.</p>
+
+                                <div class="campo_descricao">
+                                    <label>Descrição Resumida </label>
+                                    <textarea id="desc_resumida_input"></textarea>
+                                </div>
+                                <div class="campo_descricao">
+                                    <label>Aparência</label>
+                                    <textarea id="aparencia_input"></textarea>
+                                </div>
+                                <div class="campo_descricao">
+                                    <label>Backstory</label>
+                                    <textarea id="backstory_input"></textarea>
+                                </div>
+                                <div class="campo_descricao">
+                                    <label>Objetivos</label>
+                                    <textarea id="objetivos_input"></textarea>
+                                </div>
+
+                            </div>
+
+                            <div id="inventario" style="display: none;">
+                                <div class="cabecalho_aba">
+                                    <h2>Inventário</h2>
+                                    <button class="btn_adicionar"
+                                        onclick="adicionarItem('inventario', 'nome_item', 'descricao_item')">+ Adicionar
+                                        Item</button>
+                                </div>
+                                <p> Armas, dano e combate corporal </p>
+                                <div id="lista_inventario" class="lista-itens-abas"></div>
+                            </div>
+
+                            <div id="habilidades" style="display: none;">
+                                <div class="cabecalho_aba">
+                                    <h2>Habilidades</h2>
+                                    <button class="btn_adicionar"
+                                        onclick="adicionarItem('habilidades', 'nome_habilidade', 'descricao_habilidade')">+
+                                        Adicionar Habilidade</button>
+                                </div>
+                                <p> Habilidades especiais do personagem. </p>
+                                <div id="lista_habilidades" class="lista-itens-abas"></div>
+                            </div>
+
+                            <div id="tecnicas" style="display: none;">
+                                <div class="cabecalho_aba">
+                                    <h2>Técnicas Temporais</h2>
+                                    <button class="btn_adicionar"
+                                        onclick="adicionarItem('tecnicas_temporais', 'nome_tecnica', 'descricao_tecnica')">+
+                                        Adicionar Técnica</button>
+                                </div>
+                                <p> Lista de Técnicas Temporais.</p>
+                                <div id="lista_tecnicas" class="lista-itens-abas"></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    
+var idFicha = new URLSearchParams(window.location.search).get("id") || sessionStorage.ID_FICHA;
+
+function carregarDadosFicha() {
+    if (!idFicha) {
+        alert("Nenhuma ficha selecionada para edição!");
+        return;
+    }
+
+    
+    fetch(`/fichas/buscar/${idFicha}`)
+    .then(resposta => resposta.json())
+    .then(ficha => {
+        document.getElementById("nome_input").value = ficha.nome_personagem || "";
+        document.getElementById("jogador_input").value = ficha.nome_jogador || "";
+        document.getElementById("classe_input").value = ficha.classe_subclasse || "";
+        document.getElementById("IE_input").value = ficha.individualidade_especializada || "";
+        document.getElementById("valor_nivel").value = ficha.nivel || 0;
+        
+        document.getElementById("valor_vi").value = ficha.vitalidade || 0;
+        document.getElementById("valor_fo").value = ficha.fortitude || 0;
+        document.getElementById("valor_forc").value = ficha.forca || 0;
+        document.getElementById("valor_des").value = ficha.destreza || 0;
+        document.getElementById("valor_con").value = ficha.conhecimento || 0;
+        document.getElementById("valor_fas").value = ficha.fascinio || 0;
+
+        document.getElementById("vida_atual").value = ficha.vida_atual || 0;
+        document.getElementById("energia_atual").value = ficha.energia_atual || 0;
+        document.getElementById("valor_tenacidade").value = ficha.tenacidade || 0;
+
+        document.getElementById("desc_resumida_input").value = ficha.descricao_resumida || "";
+        document.getElementById("aparencia_input").value = ficha.aparencia || "";
+        document.getElementById("backstory_input").value = ficha.backstory || "";
+        document.getElementById("objetivos_input").value = ficha.objetivo || "";
+    });
+
+    
+    carregarAba('inventario', 'lista_inventario', 'id_item', 'nome_item', 'descricao_item');
+    carregarAba('habilidades', 'lista_habilidades', 'id_habilidade', 'nome_habilidade', 'descricao_habilidade');
+    carregarAba('tecnicas_temporais', 'lista_tecnicas', 'id_tecnica', 'nome_tecnica', 'descricao_tecnica');
+}
+
+function salvarAlteracoes() {
+    var payload = {
+        nome: document.getElementById("nome_input").value,
+        jogador: document.getElementById("jogador_input").value,
+        classe: document.getElementById("classe_input").value,
+        ie: document.getElementById("IE_input").value,
+        nivel: Number(document.getElementById("valor_nivel").value),
+        vitalidade: Number(document.getElementById("valor_vi").value),
+        fortitude: Number(document.getElementById("valor_fo").value),
+        forca: Number(document.getElementById("valor_forc").value),
+        destreza: Number(document.getElementById("valor_des").value),
+        conhecimento: Number(document.getElementById("valor_con").value),
+        fascinio: Number(document.getElementById("valor_fas").value),
+        vida: Number(document.getElementById("vida_atual").value),
+        energia: Number(document.getElementById("energia_atual").value),
+        tenacidade: Number(document.getElementById("valor_tenacidade").value),
+        descricao: document.getElementById("desc_resumida_input").value,
+        aparencia: document.getElementById("aparencia_input").value,
+        backstory: document.getElementById("backstory_input").value,
+        objetivo: document.getElementById("objetivos_input").value
+    };
+
+    fetch(`/fichas/editar/${idFicha}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    }).then(res => {
+        if (res.ok) {
+            alert("Alterações salvas com sucesso!");
+        } else {
+            alert("Erro ao salvar alterações.");
+        }
+    });
+}
+
+function carregarAba(tabela, containerId, idCampo, nomeCampo, descCampo) {
+    fetch(`/fichas/abas/${idFicha}/${tabela}`)
+    .then(res => res.json())
+    .then(itens => {
+        var container = document.getElementById(containerId);
+        container.innerHTML = "";
+        itens.forEach(item => {
+            container.innerHTML += `
+                <div class="item-aba-card" style="border: 1px solid #ccc; padding: 10px; margin: 5px 0;">
+                    <strong>${item[nomeCampo]}</strong>
+                    <p>${item[descCampo]}</p>
+                    <button onclick="deletarItem('${tabela}', '${idCampo}', ${item[idCampo]}, '${containerId}', '${nomeCampo}', '${descCampo}')" class="btn_deletar">Deletar</button>
+                </div>
+            `;
+        });
+    });
+}
+
+function adicionarItem(tabela, nomeCampo, descCampo) {
+    var nome = prompt("Digite o nome:");
+    var descricao = prompt("Digite a descrição:");
+
+    if (!nome || !descricao) return;
+
+    fetch("/fichas/abas/adicionar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idFicha, tabela, nomeCampo, descCampo, nome, descricao })
+    }).then(res => {
+        if (res.ok) {
+            var containerMap = { 'inventario': 'lista_inventario', 'habilidades': 'lista_habilidades', 'tecnicas_temporais': 'lista_tecnicas' };
+            var idMap = { 'inventario': 'id_item', 'habilidades': 'id_habilidade', 'tecnicas_temporais': 'id_tecnica' };
+            carregarAba(tabela, containerMap[tabela], idMap[tabela], nomeCampo, descCampo);
+        }
+    });
+}
+
+function deletarItem(tabela, idCampo, idItem, containerId, nomeCampo, descCampo) {
+    if (!confirm("Tem certeza que deseja deletar este item?")) return;
+
+    fetch("/fichas/abas/deletar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tabela, idCampo, idItem })
+    }).then(res => {
+        if (res.ok) {
+            carregarAba(tabela, containerId, idCampo, nomeCampo, descCampo);
+        }
+    });
+}
+
+
+window.onload = function() {
+    carregarDadosFicha();
+};
+
+function esconderTudo() {
+    document.getElementById("Descricao").style.display = "none";
+    document.getElementById("inventario").style.display = "none";
+    document.getElementById("habilidades").style.display = "none";
+    document.getElementById("tecnicas").style.display = "none";
+}
+
+function mostrarDescricao() { esconderTudo(); document.getElementById("Descricao").style.display = "block"; }
+function mostrarInventario() { esconderTudo(); document.getElementById("inventario").style.display = "block"; }
+function mostrarHabilidades() { esconderTudo(); document.getElementById("habilidades").style.display = "block"; }
+function mostrarTecnicas() { esconderTudo(); document.getElementById("tecnicas").style.display = "block"; }
+</script>

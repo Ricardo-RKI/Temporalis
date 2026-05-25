@@ -1,0 +1,155 @@
+.criar_campanha {
+    background-color: #1E1B2E;
+    border: 1px solid #3D375E;
+    border-radius: 20px;
+    padding: 30px;
+    width: 500px;
+    margin-top: 30px;
+    box-shadow: 0 0 20px rgba(109, 40, 217, 0.15);
+}
+
+.criar_campanha:hover {
+    box-shadow: 0 0 25px rgba(109, 40, 217, 0.35);
+}
+
+.titulo_campanha {
+    margin-bottom: 30px;
+}
+
+.titulo_campanha h2 {
+    margin: 0;
+    font-size: 32px;
+    color: #EAECFB;
+}
+
+.titulo_campanha span {
+    color: #A1A1AA;
+    font-size: 15px;
+}
+
+.formu_campanha {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input label {
+    font-size: 15px;
+    font-weight: bold;
+    color: #C4B5FD;
+}
+
+.input input,
+.input select,
+.input textarea {
+    background-color: #2A2540;
+    border: 2px solid #5B21B6;
+    border-radius: 12px;
+    padding: 14px;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    font-family: IBM Plex Mono, monospace;
+    transition: 0.3s;
+}
+
+.input input:focus,
+.input select:focus,
+.input textarea:focus {
+    border-color: #8B5CF6;
+    box-shadow: 0 0 12px #6D28D9;
+}
+
+
+
+.oi {
+    display: flex;
+    gap: 20px;
+}
+
+.oi .input {
+    width: 100%;
+}
+
+.criar_campanha button {
+    width: fit-content;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #5B21B6, #7C3AED);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.criar_campanha button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px #7C3AED;
+}
+
+::placeholder {
+    color: #A1A1AA;
+}
+.conteudo_campanha {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 30px;
+  
+}
+.area_cards {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.lista_cards {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.area_cards h2 {
+    background-color: #3D375E;
+    border-radius: 8px;
+    padding:20px;
+}
+.card_campanha{
+    width: 350px;
+    margin-top: 30px;
+    background-color: #171327;
+    border-radius: 18px;
+    padding: 20px;
+    border: 1px solid #2d2447;
+    color: white;
+}
+
+.card_campanha h2{
+    margin-bottom: 15px;
+}
+
+.card_campanha p{
+    margin-bottom: 10px;
+    color: #bdbdbd;
+}
+
+.card_campanha button{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #6C3BFF;
+    color: white;
+    cursor: pointer;
+}

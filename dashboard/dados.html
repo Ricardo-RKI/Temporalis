@@ -19,7 +19,7 @@
                 <a href="dashboard.html"> Estatísticas Gerais </a>
 
 
-                <a href="personagens.html"> Suas Fichas </a>
+                <a href="fichas.html"> Suas Fichas </a>
 
 
                 <a href="campanhas.html"> Suas Campanhas </a>
@@ -51,6 +51,7 @@
                         <select name="Rolagens" id="rolagens_de_dados">
                             <option value="d20"> D20 </option>
                             <option value="d12"> D12 </option>
+                            <option value="d10"> D10 </option>
                             <option value="d8"> D8 </option>
                             <option value="d6"> D6 </option>
                             <option value="d4"> D4 </option>
@@ -209,6 +210,9 @@
                         imagem = `<img width = 50px height = 50px src ="/public/assets/img/d20.png"> <br>`
                     } else if (selec_rolagem == 'd12') {
                         rolagens_feitas = quantidade_dados(12);
+                        resultado = rolagens_feitas;
+                    } else if (selec_rolagem == 'd10') {
+                        rolagens_feitas = quantidade_dados(10);
                         resultado = rolagens_feitas;
                     } else if (selec_rolagem == 'd8') {
                         rolagens_feitas = quantidade_dados(8);

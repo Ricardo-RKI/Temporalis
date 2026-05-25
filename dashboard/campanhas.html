@@ -1,11 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
+
+    <script src="../js/sessao.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" type="image/png" href="/assets/img/flavicontemporalis.png">
+    <link rel="stylesheet" href="./../css/dashboard.css">
+    <link rel="stylesheet" href="./../css/campanhas.css">
 </head>
-<body>
+
+<body onload="listarCampanhas()">
+    <div class="layout">
+        <div class="sidebar">
+            <h2> Temporalis </h2>
+            <div class="links_dash">
+                <a href="dashboard.html"> Estatísticas Gerais </a>
+                <a href="fichas.html"> Suas Fichas </a>
+                <a href="campanhas.html"> Suas Campanhas </a>
+                <a href="dados.html"> Rolagens de Dados </a>
+                <a class="Sair" href="#"> Sair </a>
+            </div>
+        </div>
+
+        <main>
+            <div class=conteudo_dash>
+
+                <div class="usuario">
+                    <div>
+                        <h2> Suas Campanhas </h2>
+                        <span> Crie e Salve suas Campanhas e Atribua Metas de Conclusão a Elas. </span>
+                    </div>
+                </div>
+                <div class="conteudo_campanha">
+                    <div class="criar_campanha">
+
+                        <div class="titulo_campanha">
+                            <h2>Crie sua Campanha</h2>
+                            <span>Organize sua Campanha e Monte um Escudo do Mestre para suas sessões.</span>
+                        </div>
+
+                        <div class="formu_campanha">
     
+                            <div class="input">
+                                <label>Nome da Campanha</label>
+                                <input type="text" id="campanha_name">
+                            </div>
+
+                            <div class="input">
+                                <label> Quantas sessões terá a Campanha </label>
+                                <input type="Number" id="Qtd_sessoes">
+                            </div>
+
+                            <div class="input">
+                                <label>Descrição</label>
+                                <textarea id="descricao" placeholder="Escreva um resumo da campanha"></textarea>
+                            </div>
+
+                            <div class="oi">
+
+                                <div class="input">
+                                    <label>Quantidade de Jogadores</label>
+                                    <input type="number" id="Qtd_jogadores" placeholder="5">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="mensagem_erro"> </div>
+                        <button onclick="salvar()">Salvar Campanha</button>
+
+                    </div>
+
+                    <div class="area_cards">
+
+                         <h2>Campanhas Criadas</h2>
+                       
+                        <div class="lista_cards" id="lista_cards">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+
+    </div>
 </body>
+
 </html>
+<script>
+  
+    function salvar() {
+        var id_user = sessionStorage.ID_USUARIO;
+        let nome_campanha = campanha_name.value;
+        let sessoes = Qtd_sessoes.value;
+        let descricao_campanha = descricao.value;
+        let jogadores = Qtd_jogadores.value;
+        
+        mensagem_erro.innerHTML = "";
+
+        if (nome_campanha == "" || sessoes == "" || descricao_campanha == "" || jogadores == "") {
+            mensagem_erro.innerHTML = `<p style="color: red;"> Algum Campo em Branco, Certifique-se de Colocar todas as informações. </p>`;
+            return false;
+        }
+
+        fetch("/campanhas/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nomeCampanhaServer: nome_campanha,
+                sessoesServer: sessoes,
+                descricaoServer: descricao_campanha,
+                jogadoresServer: jogadores,
+                idUserServer: id_user,
+            }),
+        })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                listarCampanhas();
+                
+
+                campanha_name.value = "";
+                Qtd_sessoes.value = "";
+                descricao.value = "";
+                Qtd_jogadores.value = "";
+                
+                mensagem_erro.innerHTML = `<p style="color: green;">Campanha criada com sucesso!</p>`;
+                
+                setTimeout(() => {
+                    mensagem_erro.innerHTML = "";
+                }, 3000);
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro da campanha!";
+            }
+        })
+        .catch(function (erro) {
+            console.log(`#ERRO: ${erro}`);
+        });
+
+        return false;
+    }
+
+    function editar(id_campanha) {
+        window.location = `editar_campanhas.html?id_campanha=${id_campanha}`;
+    }
+
+    function listarCampanhas() {
+        var id_user = sessionStorage.ID_USUARIO;
+        
+        fetch(`/campanhas/listarCampanhas/${id_user}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then((campanhas) => {
+                    console.log("Dados recebidos do banco:", campanhas);
+                    
+                    lista_cards.innerHTML = ""; 
+
+                    campanhas.forEach((campanha) => {
+                        // ATENÇÃO AQUI: Mudei para campanha.id_campanha
+                        // Se no seu banco o nome da coluna for diferente (ex: idCampanha), troque aqui!
+                        lista_cards.innerHTML += ` 
+                        <div class="card_campanha">
+                            <div class="topo_card">
+                                <h3>${campanha.nome_campanha}</h3>
+                                <span class="status_campanha">Em Andamento</span>
+                            </div>
+                            <div class="conteudo_card">
+                                <p><strong>Sessões:</strong> ${campanha.sessoes}</p>
+                                <p><strong>Jogadores:</strong> ${campanha.jogadores}</p>
+                                <p class="descricao_card">${campanha.descricao_campanha || campanha.descricao}</p>
+                            </div>
+                            <div class="botoes_card">
+                                <button class="btn_editar" onclick="editar(${campanha.id_campanha})">Editar Campanha</button>
+                            </div>
+                        </div>`;
+                    });
+                });
+            } else {
+                console.error("Erro na API ao listar campanhas.");
+            }
+        })
+        .catch(function (erro) {
+            console.log(`#ERRO: ${erro}`);
+        });
+    }
+
+
+
+  
+    
+    
+</script>

@@ -21,10 +21,14 @@ body {
 
 .sidebar {
     width: 250px;
-    max-height: 1080px;
     background-color: #5B21B6;
     padding: 20px;
     box-sizing: border-box;
+    
+    
+    position: sticky;
+    top: 0;
+    height: 1080px; 
 }
 
 .sidebar h2 {
@@ -55,7 +59,7 @@ body {
 
 .conteudo_dash {
     flex: 1;
-   
+    
     padding: 30px;
     color: white;
 }
