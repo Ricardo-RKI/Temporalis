@@ -153,3 +153,12 @@
     color: white;
     cursor: pointer;
 }
+
+.botoes_acao_ficha span {
+    margin-top: 20px;
+    color: white;
+    font-weight: bold;
+}
+.botoes_acao_ficha input {
+    width: 20px;
+}

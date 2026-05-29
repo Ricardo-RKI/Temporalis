@@ -8,7 +8,7 @@
 
     <script src="../js/sessao.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="icon" type="image/png" href="assets/img/flavicontemporalis.png">
+    <link rel="icon" type="image/png" href="/assets/img/flavicontemporalis.png">
     <link rel="stylesheet" href="./../css/dashboard.css">
 </head>
 
@@ -36,6 +36,8 @@
                 </div>
                 <h1 class="subtitulo"> Estatísticas Gerais </h1>
 
+                       
+
                 <div class="cards_gerais">
                     <div class="card">
                         <h3> Fichas Totais </h3>
@@ -55,6 +57,10 @@
 
                     </div>
                 </div>
+
+                 <div class="container_graficos1">
+                     <canvas id = "grafico_rosquinha" width="300" height="300" > </canvas>
+                        </div>
 
 
                 <h2 class="subtitulo"> Progresso de Desenvolvimento </h2>
@@ -76,19 +82,16 @@
                     <div class="card">
                         <h3> Campanhas Concluídas </h3>
                         <div classs="texto_span">
-
                             <span class="span_conclusao" id="campanhas_concluidas">0</span> / <span
                                 class="span_conclusao" id="campanhas_total">0</span>
-
                         </div>
 
                         <span class="card_atualizar"> Veja quantas Campanhas Você concluiu </span>
                     </div>
                 </div>
 
-                <div class="container_graficos">
+                <div class="container_graficos2">
                      <canvas id = "grafico_barra"> </canvas>
-                     <canvas id = "grafico_rosquinha"> </canvas>
                 </div>
 
                 </div>
@@ -183,7 +186,7 @@
                         
                         data: [qtd_campanha, qtd_fichas, qtd_rolagens],
                         backgroundColor: [
-                            'purple',
+                            '#6D28D9',
                             'red',
                             'aquamarine',
                         ],
@@ -193,10 +196,10 @@
                     labels: ['Campanhas', 'Fichas', 'Rolagens']
                 },
                 options: {
-                    responsive: true,
+                    responsive: false,
                     plugins: {
                         legend: {
-                            position: 'right',
+                            position: 'bottom',
                             labels: {
                                 color: 'white',
                                 boxWidth: 30,

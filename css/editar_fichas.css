@@ -644,3 +644,12 @@ body {
     border-color: #A855F7;
     box-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
 }
+
+.botoes_acao_ficha span {
+    margin-top: 20px;
+    color: white;
+    font-weight: bold;
+}
+.botoes_acao_ficha input {
+    width: 20px;
+}
