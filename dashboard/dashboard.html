@@ -6,149 +6,220 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
 
-     <script src="../js/sessao.js"></script>
+    <script src="../js/sessao.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="icon" type="image/png" href="assets/img/flavicontemporalis.png">
     <link rel="stylesheet" href="./../css/dashboard.css">
 </head>
 
 <body onload="listar()">
-    <div class = "layout"> 
-    <div class="sidebar">
-        <h2> Temporalis </h2>
-        <div class="links_dash">
-            <a href="dashboard.html"> Estatísticas Gerais </a>
-
-            <a href="fichas.html"> Suas Fichas </a>
-
-            <a href="campanhas.html"> Suas Campanhas </a>
-
-            <a href="dados.html"> Rolagens de Dados </a>
-
-            <a class="Sair" href="#"> Sair </a>
+    <div class="layout">
+        <div class="sidebar">
+            <h2> Temporalis </h2>
+            <div class="links_dash">
+                <a href="dashboard.html"> Estatísticas Gerais </a>
+                <a href="fichas.html"> Suas Fichas </a>
+                <a href="campanhas.html"> Suas Campanhas </a>
+                <a href="dados.html"> Rolagens de Dados </a>
+                <a class="Sair" href="#"> Sair </a>
+            </div>
         </div>
-    </div>
 
-    <main>
-        <div class=conteudo_dash>
-            <div class="usuario">
-                <div> 
-                <h2> <span id = "b_boa"> Boa Tarde </span> <span id = "b_usuario"> Usuário </span>! </h2>
-                <span> Bem-Vindo ao Temporalis. O Tempo está em suas mãos agora. Vinculado a este email: <span id = "b_email"> </span>. </span>
+        <main>
+            <div class="conteudo_dash">
+                <div class="usuario">
+                    <div>
+                        <h2> <span id="b_boa"> Boa Tarde </span> <span id="b_usuario"> Usuário </span>! </h2>
+                        <span> Bem-Vindo ao Temporalis. O Tempo está em suas mãos agora. Vinculado a este email: <span
+                                id="b_email"> </span>. </span>
+                    </div>
                 </div>
-            </div>
-        
+                <h1 class="subtitulo"> Estatísticas Gerais </h1>
 
-        <div class = "cards_gerais"> 
-            <div class = "card"> 
-                <h3> Fichas Totais 
-                </h3>
-                <span  class = "span_numero">  0 </span>
-                <span class = "card_atualizar">  0 Fichas foram adicionadas hoje. </span>
-                
+                <div class="cards_gerais">
+                    <div class="card">
+                        <h3> Fichas Totais </h3>
+                        <span class="span_numero" id="fichas_totais">0</span>
+
+                    </div>
+
+                    <div class="card">
+                        <h3> Campanhas Totais </h3>
+                        <span class="span_numero" id="campanhas_totais">0</span>
+
+                    </div>
+
+                    <div class="card">
+                        <h3> Total de Rolagens</h3>
+                        <span class="span_numero" id="rolagens_totais">0</span>
+
+                    </div>
                 </div>
-           
-            <div class = "card"> 
-                <h3> Campanhas Totais 
-                </h3>
-                <span class = "span_numero">  0 </span>
-                <span class = "card_atualizar">  0 Campanhas foram adicionadas hoje. </span>
+
+
+                <h2 class="subtitulo"> Progresso de Desenvolvimento </h2>
+
+                <div class="cards_gerais">
+                    <div class="card">
+                        <h3> Fichas Concluídas </h3>
+
+                        <div classs="texto_span">
+                            <span class="span_conclusao" id="fichas_concluidas">0</span> / <span class="span_conclusao"
+                                id="fichas_total">0</span>
+
+                        </div>
+
+                        <span class="card_atualizar"> Veja quantas Fichas Você concluiu </span>
+
+                    </div>
+
+                    <div class="card">
+                        <h3> Campanhas Concluídas </h3>
+                        <div classs="texto_span">
+
+                            <span class="span_conclusao" id="campanhas_concluidas">0</span> / <span
+                                class="span_conclusao" id="campanhas_total">0</span>
+
+                        </div>
+
+                        <span class="card_atualizar"> Veja quantas Campanhas Você concluiu </span>
+                    </div>
+                </div>
+
+                <div class="container_graficos">
+                     <canvas id = "grafico_barra"> </canvas>
+                     <canvas id = "grafico_rosquinha"> </canvas>
+                </div>
+
+                </div>
+
             </div>
-            <div class = "card"> 
-                <h3> Total de Rolagens</h3>  
-                
-                <span  class = "span_numero"> <span id = "rolagens_totais"> 0 </span> </span>
-                <span class = "card_atualizar">  0 Rolagens foram feitas hoje. </span>
-            </div>
-        </div>
+        </main>
+    </div>
+
+    <script>
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+        b_email.innerHTML = sessionStorage.EMAIL_USUARIO;
+
+        var id_user = sessionStorage.ID_USUARIO;
+
+        let horas = new Date().getHours();
+        let boa;
+
+        if (horas < 12) {
+            boa = "Bom Dia,"
+        } else if (horas < 18) {
+            boa = "Boa Tarde,"
+        } else {
+            boa = "Boa Noite,"
+        }
+
+        b_boa.innerHTML = boa;
+
+        function listar() {
+            fetch(`/dash/listar/${id_user}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then((dados) => {
+                        console.log("Dados recebidos da API:", dados);
+
+                       
+                        fichas_totais.innerHTML = dados.totalFichas;
+                        campanhas_totais.innerHTML = dados.totalCampanhas;
+                        rolagens_totais.innerHTML = dados.totalRolagens;
+
+                        fichas_total.innerHTML = dados.totalFichas;
+                        campanhas_total.innerHTML = dados.totalCampanhas;
+
+                        
+                        plotarGrafico(dados.totalCampanhas, dados.totalFichas, dados.totalRolagens);
+
+                        
+                        buscarDados();
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (erro) {
+                console.error(`#ERRO: ${erro}`);
+            });
+        }
+
+        function buscarDados() {
+            fetch(`/dash/buscarDados/${id_user}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then((dados) => {
+                        console.log("Dados recebidos da API buscarDados:", dados);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (erro) {
+                console.error(`#ERRO: ${erro}`);
+            });
+        }
+
         
-             <h2 class="subtitulo"> Suas Metas de Progresso </h2>
+        function plotarGrafico(qtd_campanha, qtd_fichas, qtd_rolagens) {
+            const graficoRosquinha = document.getElementById("grafico_rosquinha");
 
-    <div class="metas">
+            new Chart(graficoRosquinha, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        
+                        data: [qtd_campanha, qtd_fichas, qtd_rolagens],
+                        backgroundColor: [
+                            'purple',
+                            'red',
+                            'aquamarine',
+                        ],
+                        borderWidth: 0 
+                    }],
+                    
+                    labels: ['Campanhas', 'Fichas', 'Rolagens']
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                color: 'white',
+                                boxWidth: 30,
+                                padding: 15,
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Proporção de Atividades', 
+                            color: 'white',
+                            font: {
+                                size: 22,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
 
-        <div class="card_meta">
-            <div class="meta_topo">
-                <h3> Sessões na Semana </h3>
-                <span>0 / 5</span>
-            </div>
-
-            <div class="barra_progresso">
-                <div class="progresso" style="width: 60%;"></div>
-            </div>
-        </div>
-
-        <div class="card_meta">
-            <div class="meta_topo">
-                <h3> Criar Personagens </h3>
-                <span>0 / 4</span>
-            </div>
-
-            <div class="barra_progresso">
-                <div class="progresso" style="width: 50%;"></div>
-            </div>
-        </div>
-
-        <div class="card_meta">
-            <div class="meta_topo">
-                <h3> Atualizar Campanha </h3>
-                <span>0 / 3</span>
-            </div>
-
-            <div class="barra_progresso">
-                <div class="progresso" style="width: 33%;"></div>
-            </div>
-        </div>
-
-    </div>
-
-     </div>
-    </main>
-    </div>
-  <script>
-     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-     b_email.innerHTML = sessionStorage.EMAIL_USUARIO;
-
-     var id_user = sessionStorage.ID_USUARIO;
-
-     let horas = new Date().getHours();
-     let boa;
-
-     if (horas < 12) {
-        boa = "Bom Dia,"
-     } else if (horas < 18) {
-         boa = "Boa Tarde,"
-     } else {
-        boa = "Boa Noite,"
-     }
-    
-     b_boa.innerHTML = boa;
-    
-
-
-    function listar() {
-    fetch(`/dados/listar/${id_user}`, {
-      method: "GET",
-       headers: {
-        "Content-Type": "application/json",
-      },
-    
-    })
-     
-      .then(function (resposta) {
-        resposta.json().then((dados) => {
-          dados.forEach((rolagens) => {
-            //listaEmpresasCadastradas.push(empresa);
-            rolagens_totais.innerHTML = rolagens.total_rolagens;
-            console.log("deu certo;")
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
-
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
-  </script>
+</html>

@@ -73,27 +73,27 @@
                     <div class="grid_atributos">
                         <div class="card_atributo">
                             <h4>Vitalidade</h4>
-                            <input type="text" id="valor_vi">
+                            <input type="text" id="valor_vi" oninput="calcularAtr()">
                         </div>
                         <div class="card_atributo">
                             <h4>Fortitude</h4>
-                            <input type="text" id="valor_fo">
+                            <input type="text" id="valor_fo" oninput="calcularAtr()">
                         </div>
                         <div class="card_atributo">
                             <h4>Força</h4>
-                            <input type="text" id="valor_forc">
+                            <input type="text" id="valor_forc" oninput="calcularAtr()">
                         </div>
                         <div class="card_atributo">
                             <h4>Destreza</h4>
-                            <input type="text" id="valor_des">
+                            <input type="text" id="valor_des" oninput="calcularAtr()">
                         </div>
                         <div class="card_atributo">
                             <h4>Conhecimento</h4>
-                            <input type="text" id="valor_con">
+                            <input type="text" id="valor_con" oninput="calcularAtr()">
                         </div>
                         <div class="card_atributo">
                             <h4>Fascínio</h4>
-                            <input type="text" id="valor_fas">
+                            <input type="text" id="valor_fas" oninput="calcularAtr()">
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                                     <h3> Vida </h3>
                                     <div class="Vida">
                                         <input type="number" id="vida_atual" value="46" class="input_barra"> /
-                                        <span>46</span>
+                                        <span id = "vida_top">46</span>
                                     </div>
                                 </div>
 
@@ -122,7 +122,7 @@
                                     <h3> Energia Temporal </h3>
                                     <div class="Energia_temporal">
                                         <input type="number" id="energia_atual" value="50" class="input_barra"> /
-                                        <span>50</span>
+                                        <span id = "energia_top">46</span>
                                     </div>
                                 </div>
 
@@ -411,6 +411,68 @@
 </html>
 
 <script>
+    let vitali_anterior = 0;
+    let conhe_anterior = 0;
+    let forti_anterior = 0;
+
+
+ function calcularAtr() {
+let vitali = Number(valor_vi.value);
+let forti = Number(valor_fo.value);
+let conhe = Number(valor_con.value);
+let fasci = Number(valor_fas.value);
+
+let vida_nova = 0 ;
+let energia_temporal = 0; 
+let ten = 0;
+
+if (vitali < vitali_anterior) {
+    if (vitali == 0) { 
+        vida_nova = 0;
+        return vida_top.innerHTML = vida_nova;
+    } else {
+        vida_nova -= 10
+    }
+}
+
+if (conhe < conhe_anterior) {
+    if (conhe == 0) { 
+        energia_nova = 0;
+        return energia_top.innerHTML = energia_nova;
+    } else {
+        energia_nova -= 5
+    }
+}
+
+
+if (vitali > 0 || forti > 0 ) {
+    vida_nova = vitali * 10 + forti;
+    vida_top.innerHTML = vida_nova;
+   
+} else  {
+    vida_top.innerHTML = 0;
+}
+
+if (conhe > 0 || fasci > 0) {
+    energia_temporal = (conhe * 5) + (fasci * 2);
+    energia_top.innerHTML = energia_temporal;
+
+} else {
+    energia_top.innerHTML = 0;
+}
+
+if (forti > 0 ) {
+    ten = forti * 100 / 20;
+
+    let escudo = document.getElementById("valor_tenacidade");
+
+    escudo.value = ten;
+}
+
+    vitali_anterior = vitali;
+    conhe_anterior = conhe;
+    forti_anterior = forti;
+}
     
 var idFicha = new URLSearchParams(window.location.search).get("id") || sessionStorage.ID_FICHA;
 
