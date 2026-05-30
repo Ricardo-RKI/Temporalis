@@ -478,7 +478,7 @@ body {
     gap: 15px;
 }
 
-.btn_salvar {
+.botao_salvar {
     background-color: #5B21B6;
     color: white;
     border: none;
@@ -490,11 +490,11 @@ body {
     transition: 0.2s;
 }
 
-.btn_salvar:hover {
+.botao_salvar:hover {
     background-color: #7C3AED;
 }
 
-.btn_deletar {
+.botao_deletar {
     background-color: #EF4444; 
     color: white;
     border: none;
@@ -506,7 +506,7 @@ body {
     transition: 0.2s;
 }
 
-.btn_deletar:hover {
+.botao_deletar:hover {
     background-color: #B91C1C;
 }
 
