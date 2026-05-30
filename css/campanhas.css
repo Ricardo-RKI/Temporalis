@@ -5,11 +5,6 @@
     padding: 30px;
     width: 500px;
     margin-top: 30px;
-    box-shadow: 0 0 20px rgba(109, 40, 217, 0.15);
-}
-
-.criar_campanha:hover {
-    box-shadow: 0 0 25px rgba(109, 40, 217, 0.35);
 }
 
 .titulo_campanha {
@@ -45,9 +40,7 @@
     color: #C4B5FD;
 }
 
-.input input,
-.input select,
-.input textarea {
+.input input, .input select, .input textarea {
     background-color: #2A2540;
     border: 2px solid #5B21B6;
     border-radius: 12px;
@@ -56,16 +49,7 @@
     font-size: 15px;
     outline: none;
     font-family: IBM Plex Mono, monospace;
-    transition: 0.3s;
 }
-
-.input input:focus,
-.input select:focus,
-.input textarea:focus {
-    border-color: #8B5CF6;
-    box-shadow: 0 0 12px #6D28D9;
-}
-
 
 
 .oi {
@@ -80,7 +64,7 @@
 .criar_campanha button {
     width: fit-content;
     padding: 14px 24px;
-    background: linear-gradient(135deg, #5B21B6, #7C3AED);
+    background: linear-gradient(#5B21B6, #7C3AED);
     border: none;
     border-radius: 12px;
     color: white;
@@ -88,11 +72,6 @@
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
-}
-
-.criar_campanha button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px #7C3AED;
 }
 
 ::placeholder {

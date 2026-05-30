@@ -33,40 +33,39 @@
                 <div class="editar_campanha">
                     <div class="titulo_edicao">
                         <h2>Informações da Campanha</h2>
-                        <span>Modifique os dados da campanha abaixo.</span>
-                        <span class = "conclusao"> Marcar como Concluido: </span> <input type="checkbox">
-                    </div>
+                        <span class = "subtitulo">Modifique os dados da campanha abaixo.</span>
+                         <div id = "conclusao_campanha"> <span class = "conclusao"> Marcar como Concluída: </span> </div>
+                    </div>      
 
                     <div class="formulario">
                         <div class="input">
                             <label>Nome da Campanha</label>
-                            <input type="text" id="input_nome">
+                            <input type="text" id="ipt_nome">
                         </div>
 
-                        <div class="dupla_inputs">
+                        <div class="inputs">
                             <div class="input">
                                 <label>Sessões</label>
-                            
-                                <input type="number" id="input_sessoes" ">
+                                <input type="number" id="ipt_sessoes" ">
                             </div>
 
                             <div class="input">
                                 <label>Jogadores</label>
-                                <input type="number" id="input_jogadores">
+                                <input type="number" id="ipt_jogadores">
                             </div>
                         </div>
 
                         <div class="input">
                             <label>Descrição</label>
-                            <textarea id="input_descricao"></textarea>
+                            <textarea id="ipt_descricao"></textarea>
                         </div>
 
                         <div class="botoes">
                                    
-                            <button class="btn_salvar" onclick="salvarAlteracoes()">
+                            <button class="botao_salvar" onclick="salvarAlteracoes()">
                                 Salvar Alterações
                             </button>
-                            <button class="btn_excluir" onclick="deletarCampanha()">
+                            <button class="botao_excluir" onclick="deletarCampanha()">
                                 Excluir Campanha
                             </button>
                         </div>
@@ -78,8 +77,8 @@
                     <span>Cadastre suas sessões e marque as que já foram concluídas:</span>
                     
                     <div class="adicionar_sessao" style="display: flex; gap: 10px; margin-top: 15px;">
-                        <input type="text" id="input_nome_sessao" placeholder="Ex: Sessão 1 - ..." style="flex: 1; padding: 10px; border-radius: 5px; background: #2a2a2a; color: white; border: 1px solid #444;">
-                        <button class="btn_salvar" onclick="adicionarSessao()" style="padding: 10px 15px; width: auto; margin: 0;">Adicionar</button>
+                        <input type="text" id="ipt_nome_sessao" placeholder="Ex: Sessão 1 - ..." style="flex: 1; padding: 10px; border-radius: 5px; background: #2a2a2a; color: white; border: 1px solid #444;">
+                        <button class="botao_salvar" onclick="adicionarSessao(id_campanha)" style="padding: 10px 15px; width: auto; margin: 0;">Adicionar</button>
                     </div>
 
                     <div class="lista_sessoes" id="div_checklist" style="margin-top: 20px; max-height: 400px; overflow-y: auto;">
@@ -97,6 +96,9 @@
     const urlParams = new URLSearchParams(window.location.search);
     const id_campanha = urlParams.get('id_campanha');
 
+
+
+
     function carregarDadosCampanha() {
         if (!id_campanha) {
             alert("Erro: ID da campanha não encontrado na URL.");
@@ -107,11 +109,21 @@
         .then(resposta => resposta.json())
         .then(dados => {
             if (dados.length > 0) {
+        
                 let campanha = dados[0];
-                document.getElementById('input_nome').value = campanha.nome_campanha;
-                document.getElementById('input_sessoes').value = campanha.sessoes;
-                document.getElementById('input_jogadores').value = campanha.jogadores;
-                document.getElementById('input_descricao').value = campanha.descricao;
+                ipt_nome.value = campanha.nome_campanha;
+                ipt_sessoes.value = campanha.sessoes;
+                ipt_jogadores.value = campanha.jogadores;
+                ipt_descricao.value = campanha.descricao;
+
+                
+
+                let finalizado = (campanha.concluido == 1 || campanha.concluido == '1'); 
+
+                let mudar_botao = finalizado ? "botao_verde" : "botao_vermelho";
+                let texto_legal = finalizado ? "Conluído" : "Em Andamento";
+
+                conclusao_campanha.innerHTML = `<button class = ${mudar_botao} onclick = "alterarstatusCampanha(${id_campanha}, ${campanha.concluido})"> ${texto_legal} </button>`
             }
         })
         .catch(erro => console.error("Erro ao buscar dados:", erro));
@@ -130,30 +142,23 @@
             return resposta.json();
         })
         .then(sessoes => {
-            div_checklist.innerHTML = ""; 
-
-           
-            if (!Array.isArray(sessoes)) {
-                console.warn("A resposta não é uma lista válida:", sessoes);
-                document.getElementById('input_sessoes').value = 0;
-                return;
-            }
-
-            document.getElementById('input_sessoes').value = sessoes.length; 
-
-            sessoes.forEach(sessao => {
+           div_checklist.innerHTML = ""; 
+          
+           sessoes.forEach(sessao => {
                 
-                let checked = (sessao.concluido == 1 || sessao.concluido == '1') ? "checked" : ""; 
+                let finalizado = (sessao.concluido == 1 || sessao.concluido == '1'); 
 
-                div_checklist.innerHTML += `
-                <div class="item_sessao" id="sessao_div_${sessao.idsessao}" style="display: flex; align-items: center; justify-content: space-between; background-color: #2a2a2a; padding: 10px; margin-bottom: 10px; border-radius: 8px;">  <div style="display: flex; align-items: center; gap: 10px;">  <input type="checkbox" id="check_sessao_${sessao.idsessao}" ${checked} onchange="atualizarStatusSessao(${sessao.idsessao}, this.checked)" style="width: 20px; height: 20px; cursor: pointer;"><label for="check_sessao_${sessao.idsessao}" style="font-size: 16px; cursor: pointer;">${sessao.nome_sessao}</label> </div> <button onclick="removerSessao(${sessao.idsessao})" style="background-color: #ff4d4d; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;"> X </button> </div>`;
+                let mudar_botao = finalizado ? "botao_verde" : "botao_vermelho";
+                let texto_legal = finalizado ? "Conluído" : "Em andamento";
+
+                div_checklist.innerHTML += `<div class = "item_sessao" id ="sesssao_div_${sessao.idsessao}" style = "display: flex; align-items: center; justify-content:space-between; background-color:#2a2a2a; padding: 10px;"> <div style = "display: flex; align-items: center; gap: 10px"> <button class = "${mudar_botao}" onclick = "alternarstatusSessao(${sessao.idsessao}, ${sessao.concluido})"> ${texto_legal} </button> <span style = "font-size: 16px;"> ${sessao.nome_sessao} </span></div> <button onclick = "removersessao(${sessao.idsessao})" style= "background-color: #ff4d4d; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursosr: pointer;"> X </button> </div>`;
             });
         })
         .catch(erro => console.error("Erro ao listar sessões:", erro));
     }
 
     function adicionarSessao() {
-        let inputNomeSessao = document.getElementById('input_nome_sessao');
+        let inputNomeSessao = document.getElementById('ipt_nome_sessao');
         let nomeSessao = inputNomeSessao.value;
         var id_user = sessionStorage.ID_USUARIO;
 
@@ -183,19 +188,53 @@
         });
     }
 
-    function atualizarStatusSessao(idSessao, isChecked) {
-        let status = isChecked ? 1 : 0; 
+    
+    
+    function alternarstatusSessao(idSessao, conclusao) {
+    let concluido = (conclusao == 1 || conclusao == '1') ? 0 : 1; 
 
-        fetch(`/sessoes/atualizarStatus/${idSessao}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                statusServer: status
-            })
-        }).catch(erro => console.error("Erro ao atualizar status:", erro));
-    }
+    fetch(`/sessoes/atualizarStatus/${idSessao}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            statusServer: concluido
+        })
+    })
+    .then(resposta => {
+        if (resposta.ok) {
+            listarSessoes(); 
+        } else {
+            console.error("ERRO");
+        }
+    })
+    .catch(erro => console.error("Erro na requisição:", erro));
+}
 
-    function removerSessao(idSessao) {
+   function alterarstatusCampanha(idCampanha, conclusao) {
+    console.log(`status: ${conclusao}`)
+
+    let concluido = (conclusao == 1 || conclusao == '1') ? 0 : 1; 
+
+    fetch(`/campanhas/status_campanhas/${idCampanha}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            statusServer: concluido
+        })
+    })
+    .then(resposta => {
+        if (resposta.ok) {
+            carregarDadosCampanha(); 
+        } else {
+            console.error("ERRO");
+        }
+    })
+    .catch(erro => console.error("Erro na requisição:", erro));
+}
+    
+
+
+    function removersessao(idSessao) {
         if(confirm("Deseja apagar esta sessão?")) {
             fetch(`/sessoes/deletar/${idSessao}`, {
                 method: "DELETE"
@@ -208,15 +247,15 @@
     }
 
     function salvarAlteracoes() {
-        var nomeVar = document.getElementById('input_nome').value;
-        var descricaoVar = document.getElementById('input_descricao').value;
+        var nomeVar = ipt_nome.value;
+        var descricaoVar = ipt_descricao.value;
 
         fetch(`/campanhas/editar/${id_campanha}`, {
             method: "PUT", 
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                nomeServer: nomeVar,
-                descricaoServer: descricaoVar
+            nomeServer: nomeVar,
+            descricaoServer: descricaoVar
             })
         }).then(() => {
             alert("Campanha salva com sucesso");

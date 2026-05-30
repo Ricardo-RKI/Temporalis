@@ -38,11 +38,6 @@ body{
     background-color: #3D375E;
     padding: 12px;
     border-radius: 10px;
-    transition: 0.2s;
-}
-
-.links_dash a:hover{
-    transform: translateX(5px);
 }
 
 .conteudo{
@@ -88,7 +83,7 @@ body{
     margin-bottom: 10px;
 }
 
-.titulo_edicao span{
+.subtitulo{
     color: #A1A1AA;
 }
 
@@ -109,15 +104,13 @@ body{
     font-weight: bold;
 }
 
-.input input,
-.input textarea{
+.input input, .input textarea{
     background-color: #2A2540;
     border: 2px solid #5B21B6;
     border-radius: 12px;
     padding: 14px;
     color: white;
     font-size: 15px;
-    outline: none;
 }
 
 .input textarea{
@@ -125,18 +118,12 @@ body{
     height: 140px;
 }
 
-.input input:focus,
-.input textarea:focus{
-    border-color: #8B5CF6;
-    box-shadow: 0 0 10px #6D28D9;
-}
-
-.dupla_inputs{
+.inputs{
     display: flex;
     gap: 20px;
 }
 
-.dupla_inputs .input{
+.inputs .input{
     width: 100%;
 }
 
@@ -146,7 +133,7 @@ body{
     margin-top: 10px;
 }
 
-.btn_salvar{
+.botao_salvar{
     background: linear-gradient(135deg, #5B21B6, #7C3AED);
     border: none;
     padding: 14px 24px;
@@ -156,12 +143,7 @@ body{
     font-weight: bold;
 }
 
-.btn_salvar:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px #7C3AED;
-}
-
-.btn_excluir{
+.botao_excluir{
     background-color: #7F1D1D;
     border: none;
     padding: 14px 24px;
@@ -171,7 +153,7 @@ body{
     font-weight: bold;
 }
 
-.btn_excluir:hover{
+.botao_excluir:hover{
     background-color: #991B1B;
 }
 
@@ -203,8 +185,38 @@ body{
     color: #BDBDBD;
 }
 
+.botao_verde {
+    background-color: green;
+    color: white;
+    border: 1px solid green;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.botao_vermelho {
+ background-color: grey;
+ color: white;
+ border: 1px solid grey;
+ padding: 6px 12px;
+ border-radius: 5px;
+ cursor: pointer;
+ font-weight: bold;
+}
+
+.campanha_concluida {
+ background-color: grey;
+ color: white;
+ border: 1px solid grey;
+ padding: 6px 12px;
+ border-radius: 5px;
+ cursor: pointer;
+ font-weight: bold;
+}
 
 .conclusao {
     margin-bottom: 20px;
     color: white;
+    font-weight: bold;
 }
