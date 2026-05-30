@@ -130,19 +130,13 @@
                 if (resposta.ok) {
                     resposta.json().then((dados) => {
                         console.log("Dados recebidos da API:", dados);
-
-                       
                         fichas_totais.innerHTML = dados.totalFichas;
                         campanhas_totais.innerHTML = dados.totalCampanhas;
                         rolagens_totais.innerHTML = dados.totalRolagens;
-
                         fichas_total.innerHTML = dados.totalFichas;
                         campanhas_total.innerHTML = dados.totalCampanhas;
 
-                        
-                        plotarGrafico(dados.totalCampanhas, dados.totalFichas, dados.totalRolagens);
-
-                        
+                        plotarGrafico(dados.totalCampanhas, dados.totalFichas, dados.totalRolagens);                        
                         buscarDados();
                     });
                 } else {

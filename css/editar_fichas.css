@@ -46,12 +46,10 @@ body {
     background-color: #3D375E;
     padding: 12px;
     border-radius: 8px;
-    transition: 0.2s;
 }
 
 .links_dash a:hover {
     border-left: solid #EAECFB 3px;
-    transform: translateX(5px);
 }
 
 
@@ -249,8 +247,6 @@ body {
 .status_gerais h2{
     font-weight: bold;
     margin-bottom: 10px;
-
-    
 }
 
 .barras_status {
@@ -292,14 +288,10 @@ body {
 }
 
 .Tenacidade {
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     gap: 15px;
-
     margin-top: 10px;
 }
 
@@ -397,10 +389,6 @@ body {
     font-weight: bold;
 }
 
-.linha_pericia input[type="number"]:focus {
-    border-color: #EAECFB;
-}
-
 
 .linha_pericia input[type="checkbox"] {
     width: 22px;
@@ -451,17 +439,10 @@ body {
 .abas button:hover {
     background-color: #3D375E;
     color: white;
-    transform: translateY(-2px);
 }
 
 
-.abas button.ativa {
 
-    background-color: #5B21B6;
-    color: white;
-    border-color: #EAECFB;
-    box-shadow: 0 0 15px rgba(91, 33, 182, 0.6);
-}
 
 
 .conteudo_abas {
@@ -568,15 +549,6 @@ body {
 }
 
 
-.input_barra::-webkit-inner-spin-button, 
-.input_barra::-webkit-outer-spin-button,
-.input_tenacidade::-webkit-inner-spin-button, 
-.input_tenacidade::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-
 .cabecalho_aba {
     display: flex;
     justify-content: space-between;
@@ -584,7 +556,7 @@ body {
     margin-bottom: 15px;
 }
 
-.btn_adicionar {
+.botao_adicionar {
     background-color: #5B21B6;
     color: white;
     border: none;
@@ -596,7 +568,7 @@ body {
     transition: 0.2s;
 }
 
-.btn_adicionar:hover {
+.botao_adicionar:hover {
     background-color: #7C3AED;
 }
 
@@ -624,25 +596,15 @@ body {
 .campo_descricao textarea {
     width: 100%;
     min-height: 120px;
-
     background-color: #3D375E;
     border: #7C3AED solid 2px;
     border-radius: 8px;
-
     padding: 14px;
     color: white;
     outline: none;
-
     font-size: 14px;
-
     resize: vertical;
-
     box-sizing: border-box;
-}
-
-.campo_descricao textarea:focus {
-    border-color: #A855F7;
-    box-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
 }
 
 .botoes_acao_ficha span {

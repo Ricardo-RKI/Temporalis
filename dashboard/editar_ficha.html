@@ -47,23 +47,23 @@
 
                         <div class="info_jogador">
                             <div class="input_grupo">
-                                <label for="nome_input">Personagem:</label>
-                                <input type="text" id="nome_input">
+                                <label for="ipt_nome">Personagem:</label>
+                                <input type="text" id="ipt_nome">
                             </div>
                             <div class="input_grupo">
-                                <label for="jogador_input">Nome do Jogador:</label>
-                                <input type="text" id="jogador_input">
+                                <label for="ipt_jogador">Nome do Jogador:</label>
+                                <input type="text" id="ipt_jogador">
                             </div>
                         </div>
 
                         <div class="info_classe">
                             <div class="input_grupo">
-                                <label for="classe_input">Classe e Subclasse:</label>
-                                <input type="text" id="classe_input">
+                                <label for="ipt_classe">Classe e Subclasse:</label>
+                                <input type="text" id="ipt_classe">
                             </div>
                             <div class="input_grupo">
-                                <label for="IE_input">Individualidade Especializada:</label>
-                                <input type="text" id="IE_input">
+                                <label for="ipt_IE">Individualidade Especializada:</label>
+                                <input type="text" id="ipt_IE">
                             </div>
                         </div>
                     </div>
@@ -100,8 +100,6 @@
                 </div>
 
                 <div class="area_inferior">
-
-
                     <div class="status_pericias">
                         <div class="status_gerais">
                             <h2> Status do Personagem </h2>
@@ -348,19 +346,19 @@
 
                                 <div class="campo_descricao">
                                     <label>Descrição Resumida </label>
-                                    <textarea id="desc_resumida_input"></textarea>
+                                    <textarea id="ipt_desc_resumida"></textarea>
                                 </div>
                                 <div class="campo_descricao">
                                     <label>Aparência</label>
-                                    <textarea id="aparencia_input"></textarea>
+                                    <textarea id="ipt_aparencia"></textarea>
                                 </div>
                                 <div class="campo_descricao">
                                     <label>Backstory</label>
-                                    <textarea id="backstory_input"></textarea>
+                                    <textarea id="ipt_backstory"></textarea>
                                 </div>
                                 <div class="campo_descricao">
                                     <label>Objetivos</label>
-                                    <textarea id="objetivos_input"></textarea>
+                                    <textarea id="ipt_objetivos"></textarea>
                                 </div>
 
                             </div>
@@ -368,7 +366,7 @@
                             <div id="inventario" style="display: none;">
                                 <div class="cabecalho_aba">
                                     <h2>Inventário</h2>
-                                    <button class="btn_adicionar"
+                                    <button class="botao_adicionar"
                                         onclick="adicionarItem('inventario', 'nome_item', 'descricao_item')">+ Adicionar
                                         Item</button>
                                 </div>
@@ -379,7 +377,7 @@
                             <div id="habilidades" style="display: none;">
                                 <div class="cabecalho_aba">
                                     <h2>Habilidades</h2>
-                                    <button class="btn_adicionar"
+                                    <button class="botao_adicionar"
                                         onclick="adicionarItem('habilidades', 'nome_habilidade', 'descricao_habilidade')">+
                                         Adicionar Habilidade</button>
                                 </div>
@@ -390,7 +388,7 @@
                             <div id="tecnicas" style="display: none;">
                                 <div class="cabecalho_aba">
                                     <h2>Técnicas Temporais</h2>
-                                    <button class="btn_adicionar"
+                                    <button class="botao_adicionar"
                                         onclick="adicionarItem('tecnicas_temporais', 'nome_tecnica', 'descricao_tecnica')">+
                                         Adicionar Técnica</button>
                                 </div>
@@ -487,27 +485,27 @@ function carregarDadosFicha() {
     fetch(`/fichas/buscar/${idFicha}`)
     .then(resposta => resposta.json())
     .then(ficha => {
-        document.getElementById("nome_input").value = ficha.nome_personagem || "";
-        document.getElementById("jogador_input").value = ficha.nome_jogador || "";
-        document.getElementById("classe_input").value = ficha.classe_subclasse || "";
-        document.getElementById("IE_input").value = ficha.individualidade_especializada || "";
-        document.getElementById("valor_nivel").value = ficha.nivel || 0;
+        ipt_nome.value = ficha.nome_personagem || "";
+        ipt_jogador.value = ficha.nome_jogador || "";
+        ipt_classe.value = ficha.classe_subclasse || "";
+        ipt_IE.value = ficha.individualidade_especializada || "";
+        valor_nivel.value = ficha.nivel || 0;
         
-        document.getElementById("valor_vi").value = ficha.vitalidade || 0;
-        document.getElementById("valor_fo").value = ficha.fortitude || 0;
-        document.getElementById("valor_forc").value = ficha.forca || 0;
-        document.getElementById("valor_des").value = ficha.destreza || 0;
-        document.getElementById("valor_con").value = ficha.conhecimento || 0;
-        document.getElementById("valor_fas").value = ficha.fascinio || 0;
+        valor_vi.value = ficha.vitalidade || 0;
+        valor_fo.value = ficha.fortitude || 0;
+        valor_forc.value = ficha.forca || 0;
+        valor_des.value = ficha.destreza || 0;
+        valor_con.value = ficha.conhecimento || 0;
+        valor_fas.value = ficha.fascinio || 0;
 
-        document.getElementById("vida_atual").value = ficha.vida_atual || 0;
-        document.getElementById("energia_atual").value = ficha.energia_atual || 0;
-        document.getElementById("valor_tenacidade").value = ficha.tenacidade || 0;
+        vida_atual.value = ficha.vida_atual || 0;
+        energia_atual.value = ficha.energia_atual || 0;
+        valor_tenacidade.value = ficha.tenacidade || 0;
 
-        document.getElementById("desc_resumida_input").value = ficha.descricao_resumida || "";
-        document.getElementById("aparencia_input").value = ficha.aparencia || "";
-        document.getElementById("backstory_input").value = ficha.backstory || "";
-        document.getElementById("objetivos_input").value = ficha.objetivo || "";
+        ipt_desc_resumida.value = ficha.descricao_resumida || "";
+        ipt_aparencia.value = ficha.aparencia || "";
+        ipt_bakcstory.value = ficha.backstory || "";
+        ipt_objetivos.value = ficha.objetivo || "";
     });
 
     
@@ -517,31 +515,31 @@ function carregarDadosFicha() {
 }
 
 function salvarAlteracoes() {
-    var payload = {
-        nome: document.getElementById("nome_input").value,
-        jogador: document.getElementById("jogador_input").value,
-        classe: document.getElementById("classe_input").value,
-        ie: document.getElementById("IE_input").value,
-        nivel: Number(document.getElementById("valor_nivel").value),
-        vitalidade: Number(document.getElementById("valor_vi").value),
-        fortitude: Number(document.getElementById("valor_fo").value),
-        forca: Number(document.getElementById("valor_forc").value),
-        destreza: Number(document.getElementById("valor_des").value),
-        conhecimento: Number(document.getElementById("valor_con").value),
-        fascinio: Number(document.getElementById("valor_fas").value),
-        vida: Number(document.getElementById("vida_atual").value),
-        energia: Number(document.getElementById("energia_atual").value),
-        tenacidade: Number(document.getElementById("valor_tenacidade").value),
-        descricao: document.getElementById("desc_resumida_input").value,
-        aparencia: document.getElementById("aparencia_input").value,
-        backstory: document.getElementById("backstory_input").value,
-        objetivo: document.getElementById("objetivos_input").value
+    var json_ficha = {
+        nome: ipt_nome.value,
+        jogador: ipt_jogador.value,
+        classe: ipt_classe.value,
+        ie: ipt_IE.value,
+        nivel: Number(valor_nivel.value),
+        vitalidade: Number(valor_vi.value),
+        fortitude: Number(valor_fo.value),
+        forca: Number(valor_forc.value),
+        destreza: Number(valor_des.value),
+        conhecimento: Number(valor_con.value),
+        fascinio: Number(valor_fas.value),
+        vida: Number(vida_atual.value),
+        energia: Number(energia_atual.value),
+        tenacidade: Number(valor_tenacidade.value),
+        descricao: ipt_des_resumida.value,
+        aparencia: ipt_aparencia.value,
+        backstory: ipt_backstory.value,
+        objetivo: ipt_objetivos.value
     };
 
     fetch(`/fichas/editar/${idFicha}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(json_ficha)
     }).then(res => {
         if (res.ok) {
             alert("Alterações salvas com sucesso!");

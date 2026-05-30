@@ -62,12 +62,8 @@
 
                         <div class="botoes">
                                    
-                            <button class="botao_salvar" onclick="salvarAlteracoes()">
-                                Salvar Alterações
-                            </button>
-                            <button class="botao_excluir" onclick="deletarCampanha()">
-                                Excluir Campanha
-                            </button>
+                            <button class="botao_salvar" onclick="salvarAlteracoes()">Salvar Alterações </button>
+                            <button class="botao_excluir" onclick="deletarCampanha()"> Excluir Campanha </button>
                         </div>
                     </div>
                 </div>
@@ -96,9 +92,6 @@
     const urlParams = new URLSearchParams(window.location.search);
     const id_campanha = urlParams.get('id_campanha');
 
-
-
-
     function carregarDadosCampanha() {
         if (!id_campanha) {
             alert("Erro: ID da campanha não encontrado na URL.");
@@ -115,8 +108,6 @@
                 ipt_sessoes.value = campanha.sessoes;
                 ipt_jogadores.value = campanha.jogadores;
                 ipt_descricao.value = campanha.descricao;
-
-                
 
                 let finalizado = (campanha.concluido == 1 || campanha.concluido == '1'); 
 
@@ -249,13 +240,18 @@
     function salvarAlteracoes() {
         var nomeVar = ipt_nome.value;
         var descricaoVar = ipt_descricao.value;
+        var sessoesVar = ipt_sessoes.value;
+        var jogadoresVar = ipt_jogadores.value;
 
         fetch(`/campanhas/editar/${id_campanha}`, {
             method: "PUT", 
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
             nomeServer: nomeVar,
-            descricaoServer: descricaoVar
+            descricaoServer: descricaoVar,
+            sessoesServer: sessoesVar,
+            jogadoresServer: jogadoresVar
+
             })
         }).then(() => {
             alert("Campanha salva com sucesso");
