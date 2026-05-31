@@ -12,7 +12,7 @@ body {
 
 .layout {
     display: flex;
-    min-height: 100vh;
+    min-height: 1080px;
 }
 
 
@@ -22,7 +22,7 @@ body {
     padding: 20px;
     position: sticky;
     top: 0;
-    height: 100vh;
+    height: 1080px;
     box-sizing: border-box;
 }
 
@@ -330,8 +330,9 @@ body {
 
 
 .cabecalho_pericias {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding-bottom: 10px;
     margin-bottom: 15px;
     border-bottom: solid #3D375E 2px;
@@ -340,7 +341,19 @@ body {
     color: #A1A1AA;
 }
 
+.cabecalho_pericias span:nth-child(1) {
+    width: 50%;
+}
 
+.cabecalho_pericias span:nth-child(2) {
+    width: 55px;
+    text-align: center;
+}
+
+.cabecalho_pericias span:nth-child(3){
+    width: 120px;
+    text-align: center;
+}
 .lista_pericias {
     display: flex;
     flex-direction: column;
@@ -349,16 +362,23 @@ body {
 
 
 .linha_pericia {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    align-items: center;
-    background-color: #2A2540;
-    padding: 12px;
-    border-radius: 8px;
-    border: solid #3D375E 1px;
-    min-height: 60px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   background-color: #2a2a2a;
+   padding: 10px;
+   margin-bottom: 5px;
+   border-radius: 5px;
+}
+.linha_pericia .nome_pericia {
+    width: 50%
 }
 
+.linha_pericia .botao_verde, .linha_pericia .botao_vermelho {
+    width: 120px;
+    text-align: center;
+    box-sizing: border-box;
+}
 
 .nome_pericia {
     display: flex;
@@ -389,13 +409,6 @@ body {
     font-weight: bold;
 }
 
-
-.linha_pericia input[type="checkbox"] {
-    width: 22px;
-    height: 22px;
-    accent-color: #5B21B6;
-    cursor: pointer;
-}
 
 .area_inferior {
     display: flex;
@@ -434,14 +447,6 @@ body {
     cursor: pointer;
     transition: 0.2s;
 }
-
-
-.abas button:hover {
-    background-color: #3D375E;
-    color: white;
-}
-
-
 
 
 
@@ -633,4 +638,34 @@ body {
 }
 .botoes_acao_ficha input {
     width: 20px;
+}
+
+.botao_verde {
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+
+}
+
+.botao_vermelho {
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    
+}
+
+.botao_verde:hover {
+    background-color: #16a34a;
+}
+
+.botao_vermelho:hover {
+    background-color: #6b7280;
 }

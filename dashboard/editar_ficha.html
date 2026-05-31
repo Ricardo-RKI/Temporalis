@@ -34,9 +34,11 @@
                     <span>Crie e modifique o seu Adepto do Tempo.</span>
                 </div>
                 <div class="botoes_acao_ficha">
-                    <span> Marcar como Concluido: </span> <input type="checkbox">
-                    <button onclick="salvarAlteracoes()" class="botao_salvar">Salvar Alterações</button>
-                    <button onclick="deletarFicha()" class="botao_deletar">Excluir Ficha</button>
+                    <span> Marcar como Concluido: <div id="conclusao_ficha_container">
+                           
+                        </div>
+                        <button onclick="salvarAlteracoes()" class="botao_salvar">Salvar Alterações</button>
+                        <button onclick="deletarFicha()" class="botao_deletar">Excluir Ficha</button>
                 </div>
             </div>
 
@@ -151,23 +153,24 @@
 
                                         <span>Acrobacia</span>
                                     </div>
-
-                                    <input type="number" value="0">
-
-                                    <input type="checkbox">
+                                    <input type="number" id="bonus_Acrobacia" value="0">
+                                    <button id="botao_Acrobacia" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Acrobacia')">
+                                        Não Treinada
+                                    </button>
 
                                 </div>
 
                                 <div class="linha_pericia">
-
                                     <div class="nome_pericia">
-
                                         <span>Atletismo</span>
                                     </div>
+                                    <input type="number" id="bonus_Atletismo" value="0">
 
-                                    <input type="number" value="0">
-
-                                    <input type="checkbox">
+                                    <button id="botao_Atletismo" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Atletismo')">
+                                        Não Treinada
+                                    </button>
 
                                 </div>
 
@@ -175,136 +178,187 @@
                                     <div class="nome_pericia">
                                         <span>Luta</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Luta" type="number" value="0">
+                                    <button id="botao_Luta" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Luta')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Pontaria</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Pontaria" type="number" value="0">
+                                    <button id="botao_Pontaria" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Pontaria')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Reflexos</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Reflexos" type="number" value="0">
+                                    <button id="botao_Reflexos" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Reflexos')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Furtividade</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Furtividade" type="number" value="0">
+                                    <button id="botao_Furtividade" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Furtividade')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Ciências Temporais</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Ciencias_Temporais" type="number" value="0">
+                                    <button id="botao_Ciencias_Temporais" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Ciencias Temporais')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Ciências</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Ciencias" type="number" value="0">
+                                    <button id="botao_Ciencias" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Ciencias')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Diplomacia</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Diplomacia" type="number" value="0">
+                                    <button id="botao_Diplomacia" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Diplomacia')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Artístico</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Artistico" type="number" value="0">
+                                    <button id="botao_Artistico" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Artistico')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Percepção</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Percepcao" type="number" value="0">
+                                    <button id="botao_Percepcao" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Percepcao')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Intimidação</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Intimidacao" type="number" value="0">
+                                    <button id="botao_Intimidacao" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Intimidacao')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Investigação</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Investigacao" type="number" value="0">
+                                    <button id="botao_Investigacao" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Investigacao')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Profissional</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Profissional" type="number" value="0">
+                                    <button id="botao_Profisional" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Profissional')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Tecnologia</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Tecnologia" type="number" value="0">
+                                    <button id="botao_Tecnologia" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Tecnologia')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Vontade</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Vontade" type="number" value="0">
+                                    <button id="botao_Vontade" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Vontade')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Religião</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Religiao" type="number" value="0">
+                                    <button id="bonus_Religiao" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Religiao')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Tática</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Tatica" type="number" value="0">
+                                    <button id="botao_Tatica" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Tatica')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                                 <div class="linha_pericia">
                                     <div class="nome_pericia">
                                         <span>Medicina</span>
                                     </div>
-                                    <input type="number" value="0">
-                                    <input type="checkbox">
+                                    <input id="bonus_Medicina" type="number" value="0">
+                                    <button id="botao_Medicina" class="botao_vermelho"
+                                        onclick="alternarStatusPericia('Medicina')">
+                                        Não Treinada
+                                    </button>
                                 </div>
 
                             </div>
@@ -515,21 +569,28 @@
                 ipt_IE.value = ficha.individualidade_especializada;
                 valor_nivel.value = ficha.nivel;
 
-                valor_vi.value = ficha.vitalidade || 0;
-                valor_fo.value = ficha.fortitude || 0;
-                valor_forc.value = ficha.forca || 0;
-                valor_des.value = ficha.destreza || 0;
-                valor_con.value = ficha.conhecimento || 0;
-                valor_fas.value = ficha.fascinio || 0;
+                valor_vi.value = ficha.vitalidade
+                valor_fo.value = ficha.fortitude
+                valor_forc.value = ficha.forca
+                valor_des.value = ficha.destreza
+                valor_con.value = ficha.conhecimento
+                valor_fas.value = ficha.fascinio
 
-                vida_atual.value = ficha.vida_atual || 0;
-                energia_atual.value = ficha.energia_atual || 0;
-                valor_tenacidade.value = ficha.tenacidade || 0;
+                vida_atual.value = ficha.vida_atual
+                energia_atual.value = ficha.energia_atual
+                valor_tenacidade.value = ficha.tenacidade
 
-                ipt_desc_resumida.value = ficha.descricao_resumida || "";
-                ipt_aparencia.value = ficha.aparencia || "";
-                ipt_backstory.value = ficha.backstory || "";
-                ipt_objetivos.value = ficha.objetivo || "";
+                ipt_desc_resumida.value = ficha.descricao_resumida
+                ipt_aparencia.value = ficha.aparencia
+                ipt_backstory.value = ficha.backstory
+                ipt_objetivos.value = ficha.objetivo
+
+                 let finalizado = (ficha.concluido == 1 || ficha.concluido == '1'); 
+
+                let mudar_botao = finalizado ? "botao_verde" : "botao_vermelho";
+                let texto_legal = finalizado ? "Conluído" : "Em Andamento";
+
+                conclusao_ficha_container.innerHTML = `<button class = ${mudar_botao} onclick = "alterarStatusFicha(${idFicha}, ${ficha.concluido})"> ${texto_legal} </button>`
             });
 
 
@@ -537,41 +598,127 @@
         carregarAba('habilidades', 'lista_habilidades', 'id_habilidade', 'nome_habilidade', 'descricao_habilidade');
         carregarAba('tecnicas_temporais', 'lista_tecnicas', 'id_tecnica', 'nome_tecnica', 'descricao_tecnica');
     }
-
+    function alterarStatusFicha(idFicha, conclusao) {
+        let concluido = (conclusao == 1 || conclusao == '1') ? 0 : 1;
+        fetch(`/fichas/atualizarFicha/${idFicha}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            statusServer: concluido
+        })
+    })
+    .then(resposta => {
+        if (resposta.ok) {
+            carregarDadosFicha(); 
+        } else {
+            console.error("ERRO");
+        }
+    })
+    .catch(erro => console.error("Erro na requisição:", erro)); 
+    }
     function salvarAlteracoes() {
-        var json_ficha = {
-            nome: ipt_nome.value,
-            jogador: ipt_jogador.value,
-            classe: ipt_classe.value,
-            ie: ipt_IE.value,
-            nivel: Number(valor_nivel.value),
-            vitalidade: Number(valor_vi.value),
-            fortitude: Number(valor_fo.value),
-            forca: Number(valor_forc.value),
-            destreza: Number(valor_des.value),
-            conhecimento: Number(valor_con.value),
-            fascinio: Number(valor_fas.value),
-            vida: Number(vida_atual.value),
-            energia: Number(energia_atual.value),
-            tenacidade: Number(valor_tenacidade.value),
-            descricao: ipt_desc_resumida.value,
-            aparencia: ipt_aparencia.value,
-            backstory: ipt_backstory.value,
-            objetivo: ipt_objetivos.value
-        };
+    console.log( statusPericias);
+    console.log(Object.keys(statusPericias).length);
 
-        fetch(`/fichas/editar/${idFicha}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(json_ficha)
-        }).then(res => {
-            if (res.ok) {
+    var json_ficha = {
+        nome: ipt_nome.value,
+        jogador: ipt_jogador.value,
+        classe: ipt_classe.value,
+        ie: ipt_IE.value,
+        nivel: Number(valor_nivel.value),
+        vitalidade: Number(valor_vi.value),
+        fortitude: Number(valor_fo.value),
+        forca: Number(valor_forc.value),
+        destreza: Number(valor_des.value),
+        conhecimento: Number(valor_con.value),
+        fascinio: Number(valor_fas.value),
+        vida: Number(vida_atual.value),
+        energia: Number(energia_atual.value),
+        tenacidade: Number(valor_tenacidade.value),
+        descricao: ipt_desc_resumida.value,
+        aparencia: ipt_aparencia.value,
+        backstory: ipt_backstory.value,
+        objetivo: ipt_objetivos.value
+    };
+
+
+    var arrayPericias = Object.keys(statusPericias).map(function(nome) {
+        var inputBonus = document.getElementById("bonus_" + nome);
+        return {
+            nome: nome,
+            treinada: statusPericias[nome].treinada,
+            bonus: inputBonus ? Number(inputBonus.value) : 0
+        };
+    });
+
+    var salvarFicha = fetch(`/fichas/editar/${idFicha}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(json_ficha)
+    });
+
+    var salvarPericias = fetch(`/fichas/pericias/${idFicha}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pericias: arrayPericias })
+    });
+
+    Promise.all([salvarFicha, salvarPericias])
+        .then(function(respostas) {
+            if (respostas[0].ok && respostas[1].ok) {
                 alert("Alterações salvas com sucesso!");
             } else {
                 alert("Erro ao salvar alterações.");
             }
+        })
+        .catch(function(erro) {
+            console.error("Erro ao salvar:", erro);
         });
+}
+
+    let statusPericias = {};
+
+function carregarPericias() {
+    fetch(`/fichas/pericias/${idFicha}`)
+        .then(res => res.json())
+        .then(pericias => {
+            pericias.forEach(peri => {
+                statusPericias[peri.nome_pericia] = {
+                    treinada: peri.treinada,
+                    bonus: peri.bonus
+                };
+
+                var botao = document.getElementById(`botao_${peri.nome_pericia}`);
+                var inputBonus = document.getElementById(`bonus_${peri.nome_pericia}`);
+
+                if (botao) {
+                    botao.className = peri.treinada == 1 ? "botao_verde" : "botao_vermelho";
+                    botao.innerHTML = peri.treinada == 1 ? "Treinada" : "Não Treinada";
+                }
+                if (inputBonus) {
+                    inputBonus.value = peri.bonus;
+                }
+            });
+        })
+        .catch(erro => console.error("Erro ao carregar perícias:", erro));
+}
+
+function alternarStatusPericia(nomePericia) {
+    if (!statusPericias[nomePericia]) {
+        statusPericias[nomePericia] = { 
+            treinada: 0,
+            bonus: 0 
+            };
     }
+
+    statusPericias[nomePericia].treinada = statusPericias[nomePericia].treinada == 1 ? 0 : 1;
+
+    var botao = document.getElementById(`botao_${nomePericia}`);
+    var treinada = statusPericias[nomePericia].treinada;
+    botao.className = treinada == 1 ? "botao_verde" : "botao_vermelho";
+    botao.innerHTML = treinada == 1 ? "Treinada" : "Não Treinada";
+}
+
 
     function carregarAba(tabela, containerId, idCampo, nomeCampo, descCampo) {
         fetch(`/fichas/abas/${idFicha}/${tabela}`)
@@ -637,6 +784,7 @@
 
     window.onload = function () {
         carregarDadosFicha();
+        carregarPericias();
     };
 
     function esconderTudo() {

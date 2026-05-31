@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./../css/dashboard.css">
 </head>
 
-<body onload="listar()">
+<body>
     <div class="layout">
         <div class="sidebar">
             <h2> Temporalis </h2>
@@ -21,7 +21,7 @@
                 <a href="fichas.html"> Suas Fichas </a>
                 <a href="campanhas.html"> Suas Campanhas </a>
                 <a href="dados.html"> Rolagens de Dados </a>
-                <a class="Sair" href="#"> Sair </a>
+                <a class="Sair" href="/public/login.html"> Sair </a>
             </div>
         </div>
 
@@ -101,6 +101,8 @@
     </div>
 
     <script>
+        
+
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
         b_email.innerHTML = sessionStorage.EMAIL_USUARIO;
 
@@ -118,6 +120,7 @@
         }
 
         b_boa.innerHTML = boa;
+        window.onload = listar();
 
         function listar() {
             fetch(`/dash/listar/${id_user}`, {
@@ -138,6 +141,29 @@
 
                         plotarGrafico(dados.totalCampanhas, dados.totalFichas, dados.totalRolagens);                        
                         buscarDados();
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (erro) {
+                console.error(`#ERRO: ${erro}`);
+            });
+        }
+
+        function progresso_desenvolvimento() {
+            fetch(`/dash/progresso/${id_user}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then((dados) => {
+                        console.log("Dados recebidos da API:", dados);
+                        campanhas_concluidas.innerHTML = dados.concluido_campanha
+                        fichas_concluidas.innerHTML = dados.concluido_ficha
                     });
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');
@@ -215,6 +241,7 @@
                     }
                 }
             });
+            progresso_desenvolvimento();
         }
     </script>
 </body>
