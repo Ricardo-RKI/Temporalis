@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./../css/editar_fichas.css">
 </head>
 
-<body onload="listarFichas()">
+<body>
 
     <div class="layout">
         <div class="sidebar">
@@ -34,7 +34,7 @@
                     <span>Crie e modifique o seu Adepto do Tempo.</span>
                 </div>
                 <div class="botoes_acao_ficha">
-                   <span> Marcar como Concluido: </span> <input type="checkbox">
+                    <span> Marcar como Concluido: </span> <input type="checkbox">
                     <button onclick="salvarAlteracoes()" class="botao_salvar">Salvar Alterações</button>
                     <button onclick="deletarFicha()" class="botao_deletar">Excluir Ficha</button>
                 </div>
@@ -113,7 +113,7 @@
                                     <h3> Vida </h3>
                                     <div class="Vida">
                                         <input type="number" id="vida_atual" value="46" class="input_barra"> /
-                                        <span id = "vida_top">46</span>
+                                        <span id="vida_top">46</span>
                                     </div>
                                 </div>
 
@@ -121,7 +121,7 @@
                                     <h3> Energia Temporal </h3>
                                     <div class="Energia_temporal">
                                         <input type="number" id="energia_atual" value="50" class="input_barra"> /
-                                        <span id = "energia_top">46</span>
+                                        <span id="energia_top">46</span>
                                     </div>
                                 </div>
 
@@ -366,13 +366,20 @@
                             <div id="inventario" style="display: none;">
                                 <div class="cabecalho_aba">
                                     <h2>Inventário</h2>
-                                   
+
                                 </div>
-                                <p> Equipamento do Adepto do Tempo </p>
-                                <div style = "margin-bottom: 15px; display: flex; flex-direction: column; gap: 5px;"> 
-                                    <input type="text" id = "ipt_equipamento" placeholder="Novo Equipamento">
-                                    <textarea id = "desc_novo_equipamento" placeholder="Descrição do Equipamento"> </textarea> 
-                                    <button class="botao_adicionar" style = "width: fit-content" onclick = "adicionarItem('inventario', 'nome_equipamento', 'descricao_equipamento', 'id_equipamento', 'lista_inventario', 'ipt_equipamento', 'desc_novo_equipamento')"> +Adicionar Equipamento  </button>
+                                <p> Equipamento do Adepto do Tempo </p> <br>
+                                <div class="coisas">
+                                    <p> Nome do Equipamento: </p>
+                                    <input classs="nome_items" type="text" id="ipt_equipamento"
+                                        placeholder="Novo Equipamento">
+                                    <p> Descrição do Equipamento: </p>
+                                    <textarea id="desc_novo_equipamento"
+                                        placeholder="Descrição do Equipamento"> </textarea>
+
+                                    <button class="botao_adicionar" style="width: fit-content"
+                                        onclick="adicionarItem('inventario', 'nome_item', 'descricao_item', 'id_item', 'lista_inventario', 'ipt_equipamento', 'desc_novo_equipamento')">
+                                        +Adicionar Equipamento </button>
                                 </div>
                                 <div id="lista_inventario" class="lista-itens-abas"></div>
                             </div>
@@ -380,13 +387,19 @@
                             <div id="habilidades" style="display: none;">
                                 <div class="cabecalho_aba">
                                     <h2>Habilidades</h2>
-                            
+
                                 </div>
-                                <p> Habilidades especiais do personagem. </p>
-                                  <div style = "margin-bottom: 15px; display: flex; flex-direction: column; gap: 5px;"> 
-                                    <input type="text" id = "ipt_habilidade" placeholder="Nova Habilidade">
-                                    <textarea id = "desc_nova_habilidade" placeholder="Descrição da habilidade"> </textarea> 
-                                    <button class="botao_adicionar" style = "width: fit-content" onclick = "adicionarItem('habilidades', 'nome_habilidade', 'descricao_habilidade', 'id_habilidade', 'lista_habilidades', 'ipt_habilidade', 'desc_nova_habilidade')"> +Adicionar Habilidade  </button>
+                                <p> Habilidades especiais do personagem. </p> <br>
+                                <div class="coisas">
+                                    <p> Nome da Habilidade: </p>
+                                    <input classs="nome_items" type="text" id="ipt_habilidade"
+                                        placeholder="Nova Habilidade">
+                                    <p> Descricao da Habilidade: </p>
+                                    <textarea id="desc_nova_habilidade"
+                                        placeholder="Descrição da habilidade"> </textarea>
+                                    <button class="botao_adicionar" style="width: fit-content"
+                                        onclick="adicionarItem('habilidades', 'nome_habilidade', 'descricao_habilidade', 'id_habilidade', 'lista_habilidades', 'ipt_habilidade', 'desc_nova_habilidade')">
+                                        +Adicionar Habilidade </button>
                                 </div>
                                 <div id="lista_habilidades" class="lista-itens-abas"></div>
                             </div>
@@ -394,20 +407,24 @@
                             <div id="tecnicas" style="display: none;">
                                 <div class="cabecalho_aba">
                                     <h2>Técnicas Temporais</h2>
-                                <p> Lista de Técnicas Temporais do seu personagem.</p>
-                                  <div style = "margin-bottom: 15px; display: flex; flex-direction: column; gap: 5px;"> 
-                                    <input type="text" id = "ipt_tecnica" placeholder="Nova Técnica ">
-                                    <textarea id = "desc_nova_tecnica" placeholder="Descrição da Técnica"> </textarea> 
-                                    <button class="botao_adicionar" style = "width: fit-content" onclick = "adicionarItem('tecnicas_temporais', 'nome_tecnica', 'descricao_tecnica', 'id_tecnica', 'lista_tecnicas', 'ipt_tecnica', 'desc_nova_tecnica')"> +Adicionar Equipamento  </button>
+                                </div>
+                                <p>Lista de Técnicas Temporais do seu personagem.</p> <br>
+                                <div class="coisas">
+                                    <p>Nome da Técnica Temporal:</p>
+                                    <input type="text" id="ipt_tecnica" placeholder="Nova Técnica">
+                                    <p>Descrição da Técnica Temporal:</p>
+                                    <textarea id="desc_nova_tecnica" placeholder="Descrição da Técnica"></textarea>
+                                    <button class="botao_adicionar" style="width: fit-content"
+                                        onclick="adicionarItem('tecnicas_temporais', 'nome_tecnica', 'descricao_tecnica', 'id_tecnica', 'lista_tecnicas', 'ipt_tecnica', 'desc_nova_tecnica')">
+                                        +Adicionar Técnica
+                                    </button>
                                 </div>
                                 <div id="lista_tecnicas" class="lista-itens-abas"></div>
                             </div>
 
                         </div>
-
                     </div>
                 </div>
-            </div>
 
         </main>
     </div>
@@ -422,212 +439,227 @@
     let forti_anterior = 0;
 
 
- function calcularAtr() {
-let vitali = Number(valor_vi.value);
-let forti = Number(valor_fo.value);
-let conhe = Number(valor_con.value);
-let fasci = Number(valor_fas.value);
+    function calcularAtr() {
+        let vitali = Number(valor_vi.value);
+        let forti = Number(valor_fo.value);
+        let conhe = Number(valor_con.value);
+        let fasci = Number(valor_fas.value);
 
-let vida_nova = 0 ;
-let energia_temporal = 0; 
-let ten = 0;
+        let vida_nova = 0;
+        let energia_temporal = 0;
+        let ten = 0;
 
-if (vitali < vitali_anterior) {
-    if (vitali == 0) { 
-        vida_nova = 0;
-        return vida_top.innerHTML = vida_nova;
-    } else {
-        vida_nova -= 10
-    }
-}
-
-if (conhe < conhe_anterior) {
-    if (conhe == 0) { 
-        energia_nova = 0;
-        return energia_top.innerHTML = energia_nova;
-    } else {
-        energia_nova -= 5
-    }
-}
-
-
-if (vitali > 0 || forti > 0 ) {
-    vida_nova = vitali * 10 + forti;
-    vida_top.innerHTML = vida_nova;
-   
-} else  {
-    vida_top.innerHTML = 0;
-}
-
-if (conhe > 0 || fasci > 0) {
-    energia_temporal = (conhe * 5) + (fasci * 2);
-    energia_top.innerHTML = energia_temporal;
-
-} else {
-    energia_top.innerHTML = 0;
-}
-
-if (forti > 0 ) {
-    ten = forti * 100 / 20;
-
-    let escudo = document.getElementById("valor_tenacidade");
-
-    escudo.value = ten;
-}
-
-    vitali_anterior = vitali;
-    conhe_anterior = conhe;
-    forti_anterior = forti;
-}
-    
-var params = new URLSearchParams(window.location.search);
-const idFicha = params.get("id_ficha")
-
-function carregarDadosFicha() {
-    if (!idFicha) {
-        alert("Nenhuma ficha selecionada para edição!");
-        return;
-    }
-
-    fetch(`/fichas/buscar/${idFicha}`)
-    .then(resposta => resposta.json())
-    .then(ficha => {
-        ipt_nome.value = ficha.nome_personagem || "";
-        ipt_jogador.value = ficha.nome_jogador || "";
-        ipt_classe.value = ficha.classe_subclasse || "";
-        ipt_IE.value = ficha.individualidade_especializada || "";
-        valor_nivel.value = ficha.nivel || 0;
-        
-        valor_vi.value = ficha.vitalidade || 0;
-        valor_fo.value = ficha.fortitude || 0;
-        valor_forc.value = ficha.forca || 0;
-        valor_des.value = ficha.destreza || 0;
-        valor_con.value = ficha.conhecimento || 0;
-        valor_fas.value = ficha.fascinio || 0;
-
-        vida_atual.value = ficha.vida_atual || 0;
-        energia_atual.value = ficha.energia_atual || 0;
-        valor_tenacidade.value = ficha.tenacidade || 0;
-
-        ipt_desc_resumida.value = ficha.descricao_resumida || "";
-        ipt_aparencia.value = ficha.aparencia || "";
-        ipt_backstory.value = ficha.backstory || "";
-        ipt_objetivos.value = ficha.objetivo || "";
-    });
-
-    
-    carregarAba('inventario', 'lista_inventario', 'id_item', 'nome_item', 'descricao_item');
-    carregarAba('habilidades', 'lista_habilidades', 'id_habilidade', 'nome_habilidade', 'descricao_habilidade');
-    carregarAba('tecnicas_temporais', 'lista_tecnicas', 'id_tecnica', 'nome_tecnica', 'descricao_tecnica');
-}
-
-function salvarAlteracoes() {
-    var json_ficha = {
-        nome: ipt_nome.value,
-        jogador: ipt_jogador.value,
-        classe: ipt_classe.value,
-        ie: ipt_IE.value,
-        nivel: Number(valor_nivel.value),
-        vitalidade: Number(valor_vi.value),
-        fortitude: Number(valor_fo.value),
-        forca: Number(valor_forc.value),
-        destreza: Number(valor_des.value),
-        conhecimento: Number(valor_con.value),
-        fascinio: Number(valor_fas.value),
-        vida: Number(vida_atual.value),
-        energia: Number(energia_atual.value),
-        tenacidade: Number(valor_tenacidade.value),
-        descricao: ipt_desc_resumida.value,
-        aparencia: ipt_aparencia.value,
-        backstory: ipt_backstory.value,
-        objetivo: ipt_objetivos.value
-    };
-
-    fetch(`/fichas/editar/${idFicha}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(json_ficha)
-    }).then(res => {
-        if (res.ok) {
-            alert("Alterações salvas com sucesso!");
-        } else {
-            alert("Erro ao salvar alterações.");
+        if (vitali < vitali_anterior) {
+            if (vitali == 0) {
+                vida_nova = 0;
+                return vida_top.innerHTML = vida_nova;
+            } else {
+                vida_nova -= 10
+            }
         }
-    });
-}
 
-function carregarAba(tabela, containerId, idCampo, nomeCampo, descCampo) {
-    fetch(`/fichas/abas/${idFicha}/${tabela}`)
-    .then(res => res.json())
-    .then(itens => {
-        var container = document.getElementById(containerId);
-        container.innerHTML = "";
-        itens.forEach(item => {
-            container.innerHTML += `
+        if (conhe < conhe_anterior) {
+            if (conhe == 0) {
+                energia_nova = 0;
+                return energia_top.innerHTML = energia_nova;
+            } else {
+                energia_nova -= 5
+            }
+        }
+
+
+        if (vitali > 0 || forti > 0) {
+            vida_nova = vitali * 10 + forti;
+            vida_top.innerHTML = vida_nova;
+
+        } else {
+            vida_top.innerHTML = 0;
+        }
+
+        if (conhe > 0 || fasci > 0) {
+            energia_temporal = (conhe * 5) + (fasci * 2);
+            energia_top.innerHTML = energia_temporal;
+
+        } else {
+            energia_top.innerHTML = 0;
+        }
+
+        if (forti > 0) {
+            ten = forti * 100 / 20;
+
+            let escudo = document.getElementById("valor_tenacidade");
+
+            escudo.value = ten;
+        }
+
+        vitali_anterior = vitali;
+        conhe_anterior = conhe;
+        forti_anterior = forti;
+    }
+
+    var params = new URLSearchParams(window.location.search);
+    const idFicha = params.get("id_ficha")
+
+    function carregarDadosFicha() {
+        if (!idFicha) {
+            alert("Nenhuma ficha selecionada para edição!");
+            return;
+        }
+
+        fetch(`/fichas/buscar/${idFicha}`)
+            .then(resposta => resposta.json())
+            .then(ficha => {
+                ipt_nome.value = ficha.nome_personagem;
+                ipt_jogador.value = ficha.nome_jogador;
+                ipt_classe.value = ficha.classe_subclasse;
+                ipt_IE.value = ficha.individualidade_especializada;
+                valor_nivel.value = ficha.nivel;
+
+                valor_vi.value = ficha.vitalidade || 0;
+                valor_fo.value = ficha.fortitude || 0;
+                valor_forc.value = ficha.forca || 0;
+                valor_des.value = ficha.destreza || 0;
+                valor_con.value = ficha.conhecimento || 0;
+                valor_fas.value = ficha.fascinio || 0;
+
+                vida_atual.value = ficha.vida_atual || 0;
+                energia_atual.value = ficha.energia_atual || 0;
+                valor_tenacidade.value = ficha.tenacidade || 0;
+
+                ipt_desc_resumida.value = ficha.descricao_resumida || "";
+                ipt_aparencia.value = ficha.aparencia || "";
+                ipt_backstory.value = ficha.backstory || "";
+                ipt_objetivos.value = ficha.objetivo || "";
+            });
+
+
+        carregarAba('inventario', 'lista_inventario', 'id_item', 'nome_item', 'descricao_item');
+        carregarAba('habilidades', 'lista_habilidades', 'id_habilidade', 'nome_habilidade', 'descricao_habilidade');
+        carregarAba('tecnicas_temporais', 'lista_tecnicas', 'id_tecnica', 'nome_tecnica', 'descricao_tecnica');
+    }
+
+    function salvarAlteracoes() {
+        var json_ficha = {
+            nome: ipt_nome.value,
+            jogador: ipt_jogador.value,
+            classe: ipt_classe.value,
+            ie: ipt_IE.value,
+            nivel: Number(valor_nivel.value),
+            vitalidade: Number(valor_vi.value),
+            fortitude: Number(valor_fo.value),
+            forca: Number(valor_forc.value),
+            destreza: Number(valor_des.value),
+            conhecimento: Number(valor_con.value),
+            fascinio: Number(valor_fas.value),
+            vida: Number(vida_atual.value),
+            energia: Number(energia_atual.value),
+            tenacidade: Number(valor_tenacidade.value),
+            descricao: ipt_desc_resumida.value,
+            aparencia: ipt_aparencia.value,
+            backstory: ipt_backstory.value,
+            objetivo: ipt_objetivos.value
+        };
+
+        fetch(`/fichas/editar/${idFicha}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(json_ficha)
+        }).then(res => {
+            if (res.ok) {
+                alert("Alterações salvas com sucesso!");
+            } else {
+                alert("Erro ao salvar alterações.");
+            }
+        });
+    }
+
+    function carregarAba(tabela, containerId, idCampo, nomeCampo, descCampo) {
+        fetch(`/fichas/abas/${idFicha}/${tabela}`)
+            .then(res => res.json())
+            .then(itens => {
+                var container = document.getElementById(containerId);
+                container.innerHTML = "";
+                itens.forEach(item => {
+                    container.innerHTML += `
                 <div class="item-aba-card" style="border: 1px solid #ccc; padding: 10px; margin: 5px 0;">
                     <strong>${item[nomeCampo]}</strong>
                     <p>${item[descCampo]}</p>
                     <button onclick="deletarItem('${tabela}', '${idCampo}', ${item[idCampo]}, '${containerId}', '${nomeCampo}', '${descCampo}')" class="btn_deletar">Deletar</button>
                 </div>
             `;
+                });
+            });
+    }
+
+    function adicionarItem(tabela, nome_adicao, desc_adicao, id_adicao, tag_id, ipt_nome, ipt_desc) {
+        var iptNome = document.getElementById(ipt_nome);
+        var iptDesc = document.getElementById(ipt_desc);
+
+        var nome = iptNome.value;
+        var descricao = iptDesc.value;
+
+        fetch("/fichas/abas/adicionar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                idFicha: idFicha,
+                tabela: tabela,
+                nome_adicao: nome_adicao,
+                desc_adicao: desc_adicao,
+                nome: nome,
+                descricao: descricao
+            })
+        }).then(res => {
+            if (res.ok) {
+
+                carregarAba(tabela, tag_id, id_adicao, nome_adicao, desc_adicao);
+
+                iptNome.value = "";
+                iptDesc.value = "";
+            }
         });
-    });
-}
+    }
 
-function adicionarItem(tabela, nome_adicao, desc_adicao, id_adicao, tag_id, ipt_nome, ipt_desc) {
-    var iptNome = document.getElementById(ipt_nome);
-    var iptDesc = document.getElementById(ipt_desc);
+    function deletarItem(tabela, idCampo, idItem, containerId, nomeCampo, descCampo) {
+        if (!confirm("Tem certeza que deseja deletar este item?")) return;
 
-   var nome = iptNome.value;
-   var descricao = iptDesc.value;
-
-    
-
-    fetch("/fichas/abas/adicionar", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-            idFicha: idFicha, 
-            tabela: tabela, 
-            nome_adicao: nome_adicao, 
-            desc_adicao: desc_adicao, 
-            nome: nome, 
-            descricao: descricao })
-    }).then(res => {
-        if (res.ok) {
-            carregarAba(tabela, tag_id, id_adicao, nome_adicao, desc_adicao)
-        }
-    });
-}
-
-function deletarItem(tabela, idCampo, idItem, containerId, nomeCampo, descCampo) {
-    if (!confirm("Tem certeza que deseja deletar este item?")) return;
-
-    fetch("/fichas/abas/deletar", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tabela, idCampo, idItem })
-    }).then(res => {
-        if (res.ok) {
-            carregarAba(tabela, containerId, idCampo, nomeCampo, descCampo);
-        }
-    });
-}
+        fetch("/fichas/abas/deletar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ tabela, idCampo, idItem })
+        }).then(res => {
+            if (res.ok) {
+                carregarAba(tabela, containerId, idCampo, nomeCampo, descCampo);
+            }
+        });
+    }
 
 
-window.onload = function() {
-    carregarDadosFicha();
-};
+    window.onload = function () {
+        carregarDadosFicha();
+    };
 
-function esconderTudo() {
-    Descricao.style.display = "none";
-    inventario.style.display = "none";
-    habilidades.style.display = "none";
-    tecnicas.style.display = "none";
-}
+    function esconderTudo() {
+        Descricao.style.display = "none";
+        inventario.style.display = "none";
+        habilidades.style.display = "none";
+        tecnicas.style.display = "none";
+    }
 
-function mostrarDescricao() { esconderTudo(); Descricao.style.display = "block"; }
-function mostrarInventario() { esconderTudo(); inventario.style.display = "block"; }
-function mostrarHabilidades() { esconderTudo(); habilidades.style.display = "block"; }
-function mostrarTecnicas() { esconderTudo(); tecnicas.style.display = "block"; }
+    function mostrarDescricao() {
+        esconderTudo();
+        Descricao.style.display = "block";
+    }
+    function mostrarInventario() {
+        esconderTudo();
+        inventario.style.display = "block";
+    }
+    function mostrarHabilidades() {
+        esconderTudo();
+        habilidades.style.display = "block";
+    }
+    function mostrarTecnicas() {
+        esconderTudo();
+        tecnicas.style.display = "block";
+    }
 </script>
