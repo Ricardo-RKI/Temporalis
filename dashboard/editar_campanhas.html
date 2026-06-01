@@ -6,7 +6,7 @@
     <title>Editar Campanha</title>
 
     <link rel="stylesheet" href="editarCampanha.css">
-    <link rel="icon" type="image/png" href="assets/img/flavicontemporalis.png">
+    <link rel="icon" type="image/png" href="/assets/img/flavicontemporalis.png">
 </head>
 
 <body onload="carregarDadosCampanha()">
@@ -19,7 +19,8 @@
                 <a href="fichas.html">Suas Fichas</a>
                 <a href="campanhas.html">Suas Campanhas</a>
                 <a href="dados.html">Rolagens de Dados</a>
-                <a href="#">Sair</a>
+                <a href="guia_regras.html"> Guia Rápido de Regras </a>
+                <a href="/public/login.html">Sair</a>
             </div>
         </div>
 
@@ -260,13 +261,11 @@
     }
 
     function deletarCampanha() {
-        if(confirm("Tem certeza que deseja deletar esta campanha?")) {
             fetch(`/campanhas/deletar/${id_campanha}`, {
                 method: "DELETE" 
             }).then(() => {
                 alert("Campanha deletada com sucesso");
                 window.location = "campanhas.html"; 
             });
-        }
     }
 </script>

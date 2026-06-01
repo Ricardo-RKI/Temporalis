@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700&display=swap"
         rel="stylesheet">
-    <link rel="icon" type="image/png" href="assets/img/flavicontemporalis.png">
+    <link rel="icon" type="image/png" href="/assets/img/flavicontemporalis.png">
     <link rel="stylesheet" href="./../css/dashboard.css">
     <link rel="stylesheet" href="./../css/editar_fichas.css">
 </head>
@@ -23,7 +23,8 @@
                 <a href="fichas.html">Suas Fichas</a>
                 <a href="campanhas.html">Suas Campanhas</a>
                 <a href="dados.html">Rolagens de Dados</a>
-                <a class="Sair" href="#">Sair</a>
+                <a href="guia_regras.html"> Guia Rápido de Regras </a>
+                <a class="Sair" href="/public/login.html">Sair</a>
             </div>
         </div>
 
@@ -781,6 +782,14 @@ function alternarStatusPericia(nomePericia) {
         });
     }
 
+     function deletarFicha() {
+            fetch(`/fichas/deletar/${idFicha}`, {
+                method: "DELETE" 
+            }).then(() => {
+                alert("Ficha deletada");
+                window.location = "fichas.html"; 
+            });
+    }
 
     window.onload = function () {
         carregarDadosFicha();

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href = "style.css"> 
-    <link rel="icon" type="image/png" href="/public/assets/img/flavicontemporalis.png">
+    <link rel="icon" type="image/png" href="/assets/img/flavicontemporalis.png">
     <title>Login</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
     </header>
 
     <div class = "card_cadastro"> 
-       <h1> Bem-vindo de Volta!. Faça o seu Login e Tenha acesso ao seu Temporalis! </h1>
+       <h1> Olá, Adepto do Tempo! Faça o seu Login e Tenha acesso ao seu Temporalis! </h1>
 
        <p> Coloque o seu email: </p>
        <input type="text" id="email_input">
@@ -31,6 +31,7 @@
        <div id="div_erros_login"> Não tem uma conta? <a href = "cadastro.html"> Cadastre-se aqui. </a> </div>
 
         <button onclick = "entrar()"> Realizar Login </button>
+
 
     </div>
     <footer> 
@@ -47,6 +48,7 @@
 
         if (emailVar == "" || senhaVar == "") {
             alert("Algum Campo em Branco!");
+          
             finalizarAguardar();
             return false;
         }
@@ -79,7 +81,7 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
                     //sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
+                  
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard.html";
                     }, 2000); // apenas para exibir o loading

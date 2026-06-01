@@ -21,6 +21,7 @@
                 <a href="fichas.html"> Suas Fichas </a>
                 <a href="campanhas.html"> Suas Campanhas </a>
                 <a href="dados.html"> Rolagens de Dados </a>
+                <a href="guia_regras.html"> Guia Rápido de Regras </a>
                 <a class="Sair" href="/public/login.html"> Sair </a>
             </div>
         </div>
@@ -36,7 +37,7 @@
                 </div>
                 <h1 class="subtitulo"> Estatísticas Gerais </h1>
 
-                       
+
 
                 <div class="cards_gerais">
                     <div class="card">
@@ -58,9 +59,9 @@
                     </div>
                 </div>
 
-                 <div class="container_graficos1">
-                     <canvas id = "grafico_rosquinha" width="300" height="300" > </canvas>
-                        </div>
+                <div class="container_graficos1">
+                    <canvas id="grafico_rosquinha" width="300" height="300"> </canvas>
+                </div>
 
 
                 <h2 class="subtitulo"> Progresso de Desenvolvimento </h2>
@@ -91,17 +92,17 @@
                 </div>
 
                 <div class="container_graficos2">
-                     <canvas id = "grafico_barra"> </canvas>
-                </div>
-
+                    <canvas id="grafico_barra"> </canvas>
                 </div>
 
             </div>
-        </main>
+
+    </div>
+    </main>
     </div>
 
     <script>
-        
+
 
         b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
         b_email.innerHTML = sessionStorage.EMAIL_USUARIO;
@@ -129,26 +130,26 @@
                     "Content-Type": "application/json",
                 },
             })
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    resposta.json().then((dados) => {
-                        console.log("Dados recebidos da API:", dados);
-                        fichas_totais.innerHTML = dados.totalFichas;
-                        campanhas_totais.innerHTML = dados.totalCampanhas;
-                        rolagens_totais.innerHTML = dados.totalRolagens;
-                        fichas_total.innerHTML = dados.totalFichas;
-                        campanhas_total.innerHTML = dados.totalCampanhas;
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                        resposta.json().then((dados) => {
+                            console.log("Dados recebidos da API:", dados);
+                            fichas_totais.innerHTML = dados.totalFichas;
+                            campanhas_totais.innerHTML = dados.totalCampanhas;
+                            rolagens_totais.innerHTML = dados.totalRolagens;
+                            fichas_total.innerHTML = dados.totalFichas;
+                            campanhas_total.innerHTML = dados.totalCampanhas;
 
-                        plotarGrafico(dados.totalCampanhas, dados.totalFichas, dados.totalRolagens);                        
-                        buscarDados();
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (erro) {
-                console.error(`#ERRO: ${erro}`);
-            });
+                            plotarGrafico(dados.totalCampanhas, dados.totalFichas, dados.totalRolagens);
+                            buscarDados();
+                        });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                    }
+                })
+                .catch(function (erro) {
+                    console.error(`#ERRO: ${erro}`);
+                });
         }
 
         function progresso_desenvolvimento() {
@@ -158,20 +159,20 @@
                     "Content-Type": "application/json",
                 },
             })
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    resposta.json().then((dados) => {
-                        console.log("Dados recebidos da API:", dados);
-                        campanhas_concluidas.innerHTML = dados.concluido_campanha
-                        fichas_concluidas.innerHTML = dados.concluido_ficha
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (erro) {
-                console.error(`#ERRO: ${erro}`);
-            });
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                        resposta.json().then((dados) => {
+                            console.log("Dados recebidos da API:", dados);
+                            campanhas_concluidas.innerHTML = dados.concluido_campanha
+                            fichas_concluidas.innerHTML = dados.concluido_ficha
+                        });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                    }
+                })
+                .catch(function (erro) {
+                    console.error(`#ERRO: ${erro}`);
+                });
         }
 
         function buscarDados() {
@@ -181,21 +182,35 @@
                     "Content-Type": "application/json",
                 },
             })
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    resposta.json().then((dados) => {
-                        console.log("Dados recebidos da API buscarDados:", dados);
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (erro) {
-                console.error(`#ERRO: ${erro}`);
-            });
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                        resposta.json().then((dados) => {
+                            let tempo = [];
+                            let rolagens = [];
+                            let fichas = [];
+                            let campanhas = [];
+
+                            for (let i = 0; i < dados.length; i++) {
+                                tempo.push(dados[i].momento_grafico);
+                                rolagens.push(dados[i].qtd_rolagem);
+                                fichas.push(dados[i].qtd_ficha);
+                                campanhas.push(dados[i].qtd_campanha)
+
+                            }
+
+                            plotarGraficoBarra(tempo, campanhas, fichas, rolagens);
+                            console.log("Dados recebidos da API buscarDados:", dados);
+                        });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                    }
+                })
+                .catch(function (erro) {
+                    console.error(`#ERRO: ${erro}`);
+                });
         }
 
-        
+
         function plotarGrafico(qtd_campanha, qtd_fichas, qtd_rolagens) {
             const graficoRosquinha = document.getElementById("grafico_rosquinha");
 
@@ -203,16 +218,16 @@
                 type: 'doughnut',
                 data: {
                     datasets: [{
-                        
+
                         data: [qtd_campanha, qtd_fichas, qtd_rolagens],
                         backgroundColor: [
                             '#6D28D9',
                             'red',
                             'aquamarine',
                         ],
-                        borderWidth: 0 
+                        borderWidth: 0
                     }],
-                    
+
                     labels: ['Campanhas', 'Fichas', 'Rolagens']
                 },
                 options: {
@@ -231,10 +246,10 @@
                         },
                         title: {
                             display: true,
-                            text: 'Proporção de Atividades', 
+                            text: 'Proporção de Atividades',
                             color: 'white',
                             font: {
-                                size: 22,
+                                size: 20,
                                 weight: 'bold'
                             }
                         }
@@ -242,6 +257,70 @@
                 }
             });
             progresso_desenvolvimento();
+        }
+
+        function plotarGraficoBarra(tempo, campanhas, fichas, rolagens) {
+            const graficoBarra = document.getElementById("grafico_barra");
+
+            new Chart(graficoBarra, {
+                type: 'line',
+                data: {
+                    labels: tempo,
+                    datasets: [
+                        {
+                            label: 'Campanhas Criadas',
+                            data: campanhas,
+                            backgroundColor: '#6D28D9',
+                            borderColor: '#6D28D9',
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Fichas Criadas',
+                            data: fichas,
+                            backgroundColor: 'red',
+                            borderColor: 'red',
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Rolagens de Dados',
+                            data: rolagens,
+                            backgroundColor: 'aquamarine',
+                            borderColor: 'aquamarine',
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color:
+                                    'white'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Atividade durante o Tempo',
+                                color: 'white',
+                                font: { size: 18 }
+                            }
+                        },
+                        scale: {
+                            x: {
+                                ticks: {
+                                    color: 'white'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: 'white'
+                                },
+                                BeginAtZero: true
+                            }
+                        }
+                    }
+                }
+            })
         }
     </script>
 </body>

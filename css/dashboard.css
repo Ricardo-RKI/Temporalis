@@ -290,7 +290,8 @@ button:hover {
     background-color: #1E1B2E;
     border-radius: 8px;
     border: solid #6D28D9 2px;
-    height: 500px;
+    height: 600px;
+    padding: 20px;
 }
 
 .container_graficos1 {
